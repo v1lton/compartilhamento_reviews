@@ -54,5 +54,5 @@ Scenario: Postar comentário com falha
 	And    estou na página “Postagens sobre livros”
 	And    vejo o post intitulado “As crônicas de gelo e fogo”
 	When   preenche a barra de comentários com “Muito legal”
-	And    ainda estou na página “Postagens sobre livros”
-	Then   não vejo o meu comentario no post “As crônicas de gelo e fogo”
+	Then   ainda estou na página “Postagens sobre livros”
+	And    não vejo o meu comentario no post “As crônicas de gelo e fogo”
