@@ -56,3 +56,13 @@ Scenario: Postar comentário com falha
 	When   preenche a barra de comentários com “Muito legal”
 	And    ainda estou na página “Postagens sobre livros”
 	Then   não vejo o meu comentario no post “As crônicas de gelo e fogo”
+
+Scenario: Referenciar comentário com falha
+	Given  estou logado como "usuário comum” com login “ ptlh” e senha “4321”
+	And    estou na página “Posts comentados” 
+	And    vejo o comentário “Massa” do usuário “jdjr” no post “As crônicas de gelo e fogo” 
+	When   seleciono a opção “referenciar comentário”
+	And    eu preencho o comentário com “Tbm acho”
+	And    eu ainda estou na página “Posts comentados”
+	Then   vejo uma janela dizendo "erro de referencia"
+
