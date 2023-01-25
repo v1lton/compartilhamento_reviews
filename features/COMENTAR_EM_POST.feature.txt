@@ -66,3 +66,12 @@ Scenario: Referenciar comentário com falha
 	And    eu ainda estou na página “Posts comentados”
 	Then   vejo uma janela dizendo "erro de referencia"
 
+Scenario: Ocultar comentários com falha
+	Given  estou logado como "usuário comum” com o login “agsa” e senha “1234”
+	And    estou na página “Meus posts”
+	And    vejo o post intitulado “As crônicas de gelo e fogo”
+	And    vejo o campo de comentários preenchido
+	When   seleciono a opção “Ocultar comentários”
+	And    ainda estou na página “Meus posts” 
+	Then   ainda consigo ver os comentários de “ As crônicas de gelo e fogo”
+	And    vejo uma janela dizendo “Ação não realizada"
