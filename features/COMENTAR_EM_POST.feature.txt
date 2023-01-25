@@ -65,7 +65,7 @@ Scenario: Referenciar comentário com falha
 	And    vejo o comentário “Massa” do usuário “jdjr” no post “As crônicas de gelo e fogo” 
 	When   seleciono a opção “referenciar comentário”
 	And    eu preencho o comentário com “Tbm acho”
-	And    eu ainda estou na página “Posts comentados”
+	And    ainda estou na página “Posts comentados”
 	Then   vejo uma janela dizendo "erro de referencia"
 
 Scenario: Ocultar comentários com falha
@@ -75,5 +75,5 @@ Scenario: Ocultar comentários com falha
 	And    vejo o campo de comentários preenchido
 	When   seleciono a opção “Ocultar comentários”
 	And    ainda estou na página “Meus posts” 
-	Then   ainda consigo ver os comentários de “ As crônicas de gelo e fogo”
+	Then   ainda posso ver os comentários de “ As crônicas de gelo e fogo”
 	And    vejo uma janela dizendo “Ação não realizada"
