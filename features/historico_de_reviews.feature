@@ -19,3 +19,4 @@ Feature: Histórico de reviews
         And eu vejo um review deste usuário sob o post "Breno Miranda"
         And eu clico no post "Breno Miranda" 
         Then eu vejo a página do post de "Breno Miranda"
+        // passo adicional para o exercicio 
