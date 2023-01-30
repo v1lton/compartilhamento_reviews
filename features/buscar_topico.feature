@@ -32,7 +32,11 @@ Scenario: Categoria vazia
     When Eu clico no botão "Buscar"
     Then Eu devo ver a mensagem de erro "Nenhuma postagem encontrada" na lista de resultados
 
-
+Scenario: Categoria não selecionada
+    Given Eu estou na página "Homepage"
+    And Eu não seleciono a categria no campo de busca
+    When Eu clico no botão "Buscar"
+    Then Eu devo ver a mensagem de erro "Nenhuma categoria selecionada" na lista de resultados
 
 
 
