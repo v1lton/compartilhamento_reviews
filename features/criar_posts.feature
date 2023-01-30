@@ -18,3 +18,4 @@ Scenario: Postar um review muito grande
     And O botão "Postar" está habilitado
     When Eu digitar o caracter de número "1000"
     Then o botão "Postar será desabilitado"
+    
