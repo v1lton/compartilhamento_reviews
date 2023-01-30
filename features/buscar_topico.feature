@@ -37,6 +37,6 @@ Scenario: Categoria não selecionada
     And Eu não seleciono a categria no campo de busca
     When Eu clico no botão "Buscar"
     Then Eu devo ver a mensagem de erro "Nenhuma categoria selecionada" na lista de resultados
-
+    And Eu não devo ver a mensagem de erro "Nenhuma postagem encontrada" na lista de resultados
 
 
