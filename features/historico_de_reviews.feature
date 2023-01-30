@@ -21,3 +21,5 @@ Feature: Histórico de reviews
         Then eu vejo a página do post de "Breno Miranda"
 
     // novo cenario para o exercicio
+
+    // um outro cenario para o exercicio
