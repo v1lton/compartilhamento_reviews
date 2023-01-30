@@ -25,3 +25,4 @@ Scenario: Postar um review sem internet
     And O botão "Postar" está habilitado
     When Eu clico no botão "Postar"
     Then Uma mensagem de erro será retornada
+    
