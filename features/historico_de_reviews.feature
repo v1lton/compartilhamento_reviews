@@ -20,3 +20,7 @@ Feature: Histórico de reviews
         And eu clico no post "Breno Miranda" 
         Then eu vejo a página do post de "Breno Miranda"
         // passo adicional para o exercicio 
+
+    // novo cenario para o exercicio
+
+    // um outro cenario para o exercicio
