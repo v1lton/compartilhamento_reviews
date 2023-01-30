@@ -5,7 +5,7 @@ Feature: Histórico de reviews
         And "Pedro" já fez alguma review
         When eu clico em "visualizar histórico"
         Then eu vejo a página "histórico de reviews"
-        And eu vejo uma lista de reviews feitos pelo usuario "Pedro" ordenados por data
+        And eu vejo uma lista de reviews feitos pelo usuário "Pedro" ordenados por data
 
     Scenario: Acessar histórico vazio
         Given que eu estou na página "perfil de usuário" do usuário "Ana"
