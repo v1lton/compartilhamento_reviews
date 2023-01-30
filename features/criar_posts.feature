@@ -8,7 +8,7 @@ Scenario: Postar um review
     And O botão "Postar" está habilitado
     When Eu clico no botão "Postar"
     Then Eu consigo ver o post abaixo
-    And O campo de escrita fica vazio
+    And O campo de escrita fica vazio 
     And O botão "Postar" fica desabilitado
 
 
