@@ -25,5 +25,14 @@ Scenario: Postagem não pertence a categoria
     Then Eu devo ver "Postagem de teste 2" na lista de resultados
     And Eu não devo ver "Postagem de teste" na lista de resultados
 
+Scenario: Categoria vazia
+    Given Eu estou na página "Homepage"
+    And Não existe uma postagem com a categoria "Categoria de teste"
+    And Eu seleciono a categria "Categoria de teste" no campo de busca
+    When Eu clico no botão "Buscar"
+    Then Eu devo ver a mensagem de erro "Nenhuma postagem encontrada" na lista de resultados
+
+
+
 
 
