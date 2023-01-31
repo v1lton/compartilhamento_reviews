@@ -26,6 +26,8 @@ Scenario: Postagem pertence a duas categorias
     When Eu clico no botão "Buscar"
     Then Eu devo ver "Postagem de teste" na lista de resultados
 
+# Casos de falha
+
 Scenario: Postagem não pertence a categoria
     Given Eu estou na página "Homepage"
     And Existe uma postagem com o título "Postagem de teste" e categoria "Categoria de teste"
