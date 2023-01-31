@@ -3,6 +3,7 @@ Scenario: Habilitar o botão
     When Eu digito o caracter "a" no campo de escrita
     Then O botão "Postar" fica habilitado
 
+
 Scenario: Postar um review
     Given Eu estou no topo da página "Página inicial"
     And O botão "Postar" está habilitado
