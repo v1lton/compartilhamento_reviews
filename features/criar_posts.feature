@@ -12,7 +12,6 @@ Scenario: Postar um review
     And O campo de escrita fica vazio 
     And O botão "Postar" fica desabilitado
 
-
 Scenario: Postar um review muito grande
     Given Eu estou no topo da página "Página inicial"
     And Eu digitei "999" caracteres no campo de escrita
