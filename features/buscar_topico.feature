@@ -53,5 +53,5 @@ Scenario: Categoria vazia com postagem criada em outra categoria
     And Não existe uma postagem com a categoria "Categoria de teste 2"
     And Eu seleciono a categria "Categoria de teste 2" no campo de busca
     When Eu clico no botão "Buscar"
-    Then Eu devo ver a mensagem de erro "Nenhuma postagem encontrada." na lista de resultados
+    Then Eu devo ver a mensagem de erro "Nenhuma postagem encontrada" na lista de resultados
 
