@@ -1,3 +1,5 @@
+# Casos de sucesso
+
 Scenario: Uma postagem presente
     Given Eu estou na página "Homepage"
     And Existe uma postagem com o título "Postagem de teste" e categoria "Categoria de teste"
