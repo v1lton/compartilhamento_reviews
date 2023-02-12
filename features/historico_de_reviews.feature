@@ -11,12 +11,11 @@ Feature: Histórico de reviews
         Given que eu estou na página "perfil de usuário" do usuário "Ana"
         And "Ana" não fez nenhuma review
         When eu clico em "visualizar histórico"
-        Then eu vejo a página "histórico de reviews"
-        And eu vejo a mensagem "Este usuário ainda não fez nenhuma review"
+        Then eu vejo uma janela com a mensagem "O usuario não há reviews"
 
-    Scenario: Abrir post através do histórico do usuário
+    Scenario: Abrir review através do histórico do usuário
         Given que eu estou na página "histórico de reviews" do usuário "Pedro"
-        And eu vejo um review deste usuário sob o post "Breno Miranda"
-        And eu clico no post "Breno Miranda" 
-        Then eu vejo a página do post de "Breno Miranda"
+        And eu vejo um review deste usuário sobre "Breno Miranda" com "ótimo professor"
+        And eu clico na review em questão
+        Then eu vejo a página do review com "ótimo professor"
 
