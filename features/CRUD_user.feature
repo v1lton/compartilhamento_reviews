@@ -8,29 +8,27 @@ Scenario: Criar um novo usuário comum
     And Eu preencho "Elu/delu" para "Pronomes"
     And Eu preencho "Brasil" para "País"
     And Eu confimo o cadastro do usuário
-    Then Eu recebo uma mensagem de confirmação
-    And Eu consigo ver a página do usuário "JRamos"
+    Then Eu consigo ver a página "Início"
 
 Scenario: Criar um novo usuário comum com um nome de usuário já registrado
-    Given Eu estou na "Cadastrar novo usuário" do website
+    Given Eu estou na página "Cadastrar novo usuário" do website
     And Já existe um usuário com "JRamos" como "Nome de usuário" cadastrado
     When Eu preencho "JRamos" para "Nome de usuário"
-    And Eu preencho "joaquim@bob.com.br" para "Email"
-    And Eu preencho "ASDFJiwejr$33s2cPdd" para "Senha"
-    And Eu preencho "Joaquim" para "Nome"
-    Then Eu vejo uma mensagem de erro indicando que meu "Email" já existe
+    Then Eu vejo uma indição que o campo preenchido "Nome de usuário" já existe
 
 Scenario: Remover um usuário comum
-    Given Eu estou na página "Excluir conta"
+    Given Eu estou na página "Minhas informações"
     And Eu estou conectado como usuário comum "JRamos"
-    When Eu aperto o botão "Excluir conta"
-    Then Eu recebo uma mensagem de confirmação
-    And Eu retorno para "Página Inicial"
+    When Eu aperto o botão "Removar"
+    And Eu confirmo a remoção
+    Then Eu retorno para "Página Inicial"
 
 Scenario: Atualizar email de um usuário comum
-    Given Eu estou conectado na conta minha conta "JRamos"
-    When Eu navego para a página "Editar Perfil"
+    Given Eu estou na página "Minhas informações"
+    And Eu estou conectado como usuário comum "JRamos"
+    When Eu aperto no botão para editar o e-mail
     And Eu preencho o e-mail "joao@outlook.com" no campo "Email"
-    And Eu clico no botão "Salvar mudanças"
-    Then Eu vejo uma mensagem de confirmação
+    And Eu clico no botão "Atualizar"
+    And Eu confirmo a atualização
+    Then Eu vejo o campo e-mail preenchido com "joao@outlook.com"
     
