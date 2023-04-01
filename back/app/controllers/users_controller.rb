@@ -41,10 +41,6 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
-  def follow
-    @user.follow(params:[])
-  end
-
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
@@ -56,6 +52,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :email, :name, :surname, :pronouns, :country, :password, :password_confirmation)
   end
 
+  # Only allow a list of trusted parameters for updating.
   def user_update_params
     params.require(:user).permit(:email, :name, :surname, :pronouns, :country, :password, :password_confirmation)
   end
