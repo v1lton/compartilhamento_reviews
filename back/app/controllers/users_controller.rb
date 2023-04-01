@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show update destroy ]
+  before_action :logged_in_user, only: %i[update destroy]
+  before_action :correct_user, only: %i[update destroy]
 
   # GET /users
   def index
@@ -56,5 +58,18 @@ class UsersController < ApplicationController
 
   def user_update_params
     params.require(:user).permit(:email, :name, :surname, :pronouns, :country, :password, :password_confirmation)
+  end
+
+  # Confirms a logged-in user.
+  def logged_in_user
+    unless logged_in?
+      render json: { message: "Please login" }, status: :forbidden
+    end
+  end
+
+  # Confirms the correct user.
+  def correct_user
+    @user = User.find(params[:id])
+    render json: { message: "You are not the correct user" }, status: :forbidden unless current_user?(@user)
   end
 end
