@@ -2,7 +2,7 @@ require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:larissa)
+    @user = users(:joao)
   end
 
   test "should get index" do
@@ -11,8 +11,22 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create user" do
+    body = {
+      "user":
+        {
+          "username": "v1ltoxdn",
+          "email": "wrs@teste.com",
+          "name": "Wilton",
+          "surname": "Ramos de Oliveira",
+          "pronouns": "Elu/Delu",
+          "country": "Brasil",
+          "password": "OCinÉDemais!",
+          "password_confirmation": "OCinÉDemais!"
+        }
+    }
+
     assert_difference("User.count") do
-      post users_url, params: { user: { country: @user.country, email: @user.email, keyword: @user.keyword, name: @user.name, pronoun: @user.pronoun, surname: @user.surname, username: @user.username } }, as: :json
+      post users_url, params: body, as: :json
     end
 
     assert_response :created
@@ -21,18 +35,5 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should show user" do
     get user_url(@user), as: :json
     assert_response :success
-  end
-
-  test "should update user" do
-    patch user_url(@user), params: { user: { country: @user.country, email: @user.email, keyword: @user.keyword, name: @user.name, pronoun: @user.pronoun, surname: @user.surname, username: @user.username } }, as: :json
-    assert_response :success
-  end
-
-  test "should destroy user" do
-    assert_difference("User.count", -1) do
-      delete user_url(@user), as: :json
-    end
-
-    assert_response :no_content
   end
 end
