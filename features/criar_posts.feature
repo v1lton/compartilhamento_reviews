@@ -10,8 +10,7 @@ Feature: criar posts
         And Eu "Esse professor mudou minha vida" para "descrição"
         And Eu seleciono o professor "Casemiro"
         When Eu clicar no botão "Enviar Post"
-        Then Uma mensagem de sucesso será exibida
-        And Eu consigo ver meu post na "lista de posts"
+        And Eu posso ver o um post com a descrição "Esse professor mudou minha vida" e o professor "Casemiro"
 
     Scenario: Enviar post bem sucedido sem escolher professor
         When Eu clico para "criar novo post"
@@ -29,6 +28,6 @@ Feature: criar posts
 
     Scenario: Enviar Post um review muito grande
         When Eu clico para "criar novo post"
-        And A descrição chega a "999" caracteres
+        And A descrição passa dos "999" caracteres
         When Eu clicar no botao "Enviar Post"
         Then uma mensagem de erro será exibida
