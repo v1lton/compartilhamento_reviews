@@ -1,18 +1,18 @@
-import { useMemo } from 'react';
-import { Typography } from 'antd';
-
+import { useMemo } from "react";
+import { Typography } from "antd";
+import { Link } from "react-router-dom";
 const { Title, Paragraph } = Typography;
 
 function User({
-  alignment = 'left',
-  userName = 'Nome da pessoa',
-  imgSrc = 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80',
-  imgSize = '100px',
-  role = 'Discente'
+  alignment = "left",
+  userName = "Nome da pessoa",
+  imgSrc = "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80",
+  imgSize = "100px",
+  role = "Discente",
 }) {
   const componentStyle = useMemo(() => {
     switch (alignment) {
-      case 'left':
+      case "left":
         return {
           display: "flex",
           flexDirection: "row",
@@ -20,7 +20,7 @@ function User({
           flexWrap: "wrap",
           justifyContent: "flex-start",
         };
-      case 'right':
+      case "right":
         return {
           display: "flex",
           flexDirection: "row-reverse",
@@ -37,58 +37,57 @@ function User({
           justifyContent: "space-between",
         };
     }
-  }, [alignment])
+  }, [alignment]);
 
   const TextDivStyle = useMemo(() => {
     switch (alignment) {
-      case 'left':
+      case "left":
         return {
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
         };
-      case 'right':
+      case "right":
         return {
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
         };
       default:
         return {
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginTop: '16px',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginTop: "16px",
         };
     }
-  }, [alignment])
+  }, [alignment]);
 
   return (
-    <div
-      style={componentStyle}
-    >
-        <img 
-					src={imgSrc}
-					alt='Foto de perfil'
-          style={{ 
+    <div style={componentStyle}>
+      <Link to="/profile">
+        <img
+          src={imgSrc}
+          alt="Foto de perfil"
+          style={{
             width: imgSize,
             height: imgSize,
-            objectFit: 'cover',
-            borderRadius: '50%',
-            border: '5px solid black',
+            objectFit: "cover",
+            borderRadius: "50%",
+            border: "5px solid black",
           }}
-				/>
-        <div
-          style={TextDivStyle}
+        />
+      </Link>
+      <div style={TextDivStyle}>
+        <Paragraph
+          style={{
+            margin: "0 16px",
+            textAlign: "center",
+          }}
         >
-          <Paragraph
-            style={{
-              margin: "0 16px",
-              textAlign: "center",
-            }}
-          >
-            {role}
-          </Paragraph>
+          {role}
+        </Paragraph>
+        <Link to="/profile">
           <Title
             style={{
               margin: "0 16px",
@@ -97,8 +96,9 @@ function User({
           >
             {userName}
           </Title>
-        </div>
-	  </div>
+        </Link>
+      </div>
+    </div>
   );
 }
 
