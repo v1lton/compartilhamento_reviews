@@ -14,5 +14,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out if logged_in?
+    render json: { message: "Success" }, status: :accepted
   end
 end
