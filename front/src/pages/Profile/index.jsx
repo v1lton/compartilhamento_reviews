@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { Carousel, Card } from 'antd';
-import ReviewCard from '../components/ReviewCard';
-import ProfileHeader from '../components/ProfileHeader';
-import User from '../components/User';
+import ReviewCard from '../../components/ReviewCard';
+import ProfileHeader from '../../components/ProfileHeader';
+import User from '../../components/User';
 
 const reviews = [
   {
@@ -47,8 +47,8 @@ function App() {
         backgroundColor: '#f5f5f5',
       }}
     >
-      
-      <ProfileHeader 
+
+      <ProfileHeader
         goTo={(index) => {
           carouselRef.current.goTo(index)
         }}
@@ -56,7 +56,7 @@ function App() {
 
       <Carousel ref={carouselRef} dots={false}>
         <div>
-          <main 
+          <main
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -68,7 +68,7 @@ function App() {
             }}
           >
             {reviews.map((review, index) => (
-              <div 
+              <div
                 style={{
                   marginBottom: '16px'
                 }}
