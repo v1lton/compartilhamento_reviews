@@ -16,4 +16,12 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     render json: { message: "Success" }, status: :accepted
   end
+
+  def is_logged
+    if logged_in?
+      render json: { logged: true }, status: :accepted
+    else
+      render json: { logged: false }, status: :not_found
+    end
+  end
 end
