@@ -17,10 +17,10 @@ class ReviewsController < ApplicationController
   end
 
   def reviews_by_category
-    categody = Category.find_by_id(params[:category_id])
+    category = Category.find_by(name: params[:category_name])
     render json:{ message: "Category not found."}, status: :not_found and return unless category
 
-    @reviews = Review.filter_by_category(category.id)
+    @reviews = Review.filter_by_category(category)
     render json: @reviews
   end
 end
