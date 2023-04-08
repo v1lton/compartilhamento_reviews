@@ -65,4 +65,16 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
+
+  test "should follow and unfollow a user" do
+    joao = users(:joao)
+    rafa  = users(:rafa)
+    assert_not joao.following?(rafa)
+    joao.follow(rafa)
+    assert joao.following?(rafa)
+    assert rafa.followers.include?(joao)
+    joao.unfollow(rafa)
+    assert_not joao.following?(rafa)
+  end
+
 end

@@ -8,3 +8,10 @@ joao:
   pronouns: Ele-Delu
   country: Brasil
   password_digest: <%= User.digest("password") %>
+
+rafa:
+  username: rafa
+  email: rafa@example.com
+  name: Rafa
+  surname: Fidel
+  password_digest: <%= User.digest("password") %>
