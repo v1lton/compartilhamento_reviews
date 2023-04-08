@@ -6,6 +6,7 @@ import SignupForm from "./pages/SignupForm"
 import {Routes, Route} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ProfessorListPage from './pages/ProfessorListPage';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <Home /> }></Route>
           <Route path="/profile" element={<Profile/>}></Route>
+          <Route path="/myprofessors" element={<ProfessorListPage/>}></Route>
         </Routes>
         ) : (
           <Routes>
