@@ -1,0 +1,282 @@
+[33mcommit 3c71315960e68e91cda8e03bf8c43085678c935f[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 38d9dad f6fd6e1
+Author: agsa2 <agsa0108@gmail.com>
+Date:   Sat Apr 8 15:21:13 2023 -0300
+
+    alterçao json
+
+[33mcommit 38d9dad8a6a0d74a09f67db5cf0bd884b6193cec[m
+Author: agsa2 <agsa0108@gmail.com>
+Date:   Sat Apr 8 15:07:40 2023 -0300
+
+    MessageTime and like button added
+
+[33mcommit f6fd6e11214c7a8ee7c70deb602a929432a48ea2[m
+Merge: de00c41 d110958
+Author: Gabriel Queiroz <gqmv@cin.ufpe.br>
+Date:   Sat Apr 8 14:33:01 2023 -0300
+
+    Merge pull request #62 from v1lton/category
+    
+    Adição do endpoint de listagem de categorias no backend junto com seus testes
+
+[33mcommit d11095859b725a2b29bf2a7b8c259b7e18620887[m
+Author: Wilton Silva <wrs@cin.ufpe.br>
+Date:   Sat Apr 8 14:28:49 2023 -0300
+
+    Cria categoria
+
+[33mcommit de00c4112fb09332cf4b60a19029f57e7c82e05a[m
+Author: Wilton Ramos <wrs@cin.ufpe.br>
+Date:   Sat Apr 8 14:15:24 2023 -0300
+
+    Conecta sistema de login (#61)
+    
+    * Ajusta sistema de login
+    
+    * Conecta login com o front
+
+[33mcommit 9b991f9885bd38875177076ad3c0f03c9e343976[m
+Author: Wilton Ramos <wrs@cin.ufpe.br>
+Date:   Sat Apr 8 11:54:53 2023 -0300
+
+    Criação de telas de autenticação e criação de usuário (#60)
+    
+    * Allow CORS in back-end to accept cross-origin AJAX requests
+    
+    * WIP: create edit/login/signup views
+    
+    * WIP: SigupForm view
+    
+    * Delete EditForm.jsx
+
+[33mcommit 04a472574c52a67e3d6ef549a2dfd14c1f7748bb[m
+Author: Vinícius Scala <41218597+viniciusscala@users.noreply.github.com>
+Date:   Sat Apr 8 11:47:11 2023 -0300
+
+    Implementação do back end para funcionalidade de seguir (#59)
+
+[33mcommit 49cf5d4bfe7786dea24efebbf8b329c2b050d45b[m
+Author: agsa2 <agsa0108@gmail.com>
+Date:   Sat Apr 8 11:04:00 2023 -0300
+
+    Delet comment function added
+
+[33mcommit f95cd3711af12e4fa5ff2cf007ade9410f4b80d6[m
+Author: agsa2 <agsa0108@gmail.com>
+Date:   Sat Apr 8 00:24:10 2023 -0300
+
+    Comment bar added
+
+[33mcommit 72895d3db69a7b9532249267f1a04c3aa1f23468[m
+Merge: c8f7057 8861329
+Author: Heitor Coimbra <hrc@cin.ufpe.br>
+Date:   Fri Apr 7 14:27:07 2023 -0300
+
+    Merge pull request #57 from MendesHeitor/main
+    
+    Implemented the routing logic + the home component + create review modal
+
+[33mcommit 886132976cc71b5d3464b88e04d373702cd7f7fb[m
+Author: MendesHeitor <hemepe18@gmail.com>
+Date:   Fri Apr 7 14:02:01 2023 -0300
+
+    Implemented the routing logic + the home component
+    Tests missing, create post backend missing.
+
+[33mcommit c8f7057d7798de5a60d881b42d3bd5df3137784d[m
+Author: Wilton Ramos <wrs@cin.ufpe.br>
+Date:   Sat Apr 1 13:56:46 2023 -0300
+
+    Implementação do back end para modelo de Usuário (#54)
+    
+    * Create .gitignore
+    
+    * Update gems and ruby version
+    
+    * Create Users model
+    
+    * Create UsersController
+    
+    * Create sign in/ sign out
+    
+    * Log in by username
+    
+    * Create user authorization for deletion and update
+    
+    * Fix the user model tests
+    
+    * Update controller test
+
+[33mcommit e1272cedab98d7a1c95d67e6d4fe381619d71ea9[m
+Author: Vinícius Scala <41218597+viniciusscala@users.noreply.github.com>
+Date:   Sat Apr 1 13:55:14 2023 -0300
+
+    Implementação da tela de perfil no front (#55)
+    
+    * add antd lib
+    
+    * create user component
+    
+    * create header component
+    
+    * create review card component
+    
+    * create profile page
+    
+    * add profile page to index
+
+[33mcommit d75734387c38a99c97bc4f20d3ceade2532e0b06[m
+Merge: c555a86 b516acb
+Author: Gabriel Queiroz <gqmv@cin.ufpe.br>
+Date:   Wed Feb 15 10:43:01 2023 -0300
+
+    Merge pull request #45 from gqmv/main
+
+[33mcommit c555a86ede41d5cb69f50b95c3e103b05280c377[m
+Merge: d3d23b6 950fbb4
+Author: Heitor Coimbra <hrc@cin.ufpe.br>
+Date:   Wed Feb 15 10:32:44 2023 -0300
+
+    Merge pull request #52 from MendesHeitor/main
+    
+    Listas + criar post changes
+
+[33mcommit 950fbb4f0b0b4f4ce47361f9c3eebded52c8986d[m
+Merge: f28a305 dc5b3ac
+Author: MendesHeitor <hemepe18@gmail.com>
+Date:   Wed Feb 15 10:31:38 2023 -0300
+
+    Merge branch 'main' of https://github.com/MendesHeitor/compartilhamento_reviews
+
+[33mcommit f28a305c9c982c7c33fd7af88fc42b7440a28ee2[m
+Author: MendesHeitor <hemepe18@gmail.com>
+Date:   Wed Feb 15 10:31:02 2023 -0300
+
+    lista de professores added + criar posts improved
+
+[33mcommit b516acb573a477dcb03282f965e92d37bae84eba[m
+Author: Gabriel Queiroz <gqmv@cin.ufpe.br>
+Date:   Wed Feb 15 10:28:32 2023 -0300
+
+    Delete .DS_Store
+
+[33mcommit d3d23b6e82d429a824b795cac06481f38d9c9fd9[m
+Merge: dc5b3ac 43b4098
+Author: Gabriel Queiroz <gqmv@cin.ufpe.br>
+Date:   Wed Feb 15 10:27:50 2023 -0300
+
+    Merge pull request #1 from agsa2/main
+    
+    Feature COMENTAR EM POST
+
+[33mcommit dc5b3acc3704506425ba8933e14ad0b0b7e9ca68[m
+Merge: 68ed2e6 44b8054
+Author: Heitor Coimbra <hrc@cin.ufpe.br>
+Date:   Wed Feb 15 10:21:15 2023 -0300
+
+    Merge pull request #47 from MendesHeitor/main
+    
+    Criar Posts feature file updated
+
+[33mcommit 43b4098318d9f7d383bd52d45c264f262227710b[m
+Author: Alvaro Gabriel <agsa0108@gmail.com>
+Date:   Wed Feb 15 10:20:48 2023 -0300
+
+    Update COMENTAR_EM_POST.feature
+
+[33mcommit 68ed2e6c3d5f626abf3813f019f294daf53670ab[m
+Author: Wilton Ramos <wrs@cin.ufpe.br>
+Date:   Wed Feb 15 10:18:54 2023 -0300
+
+    Delete usuario_comum.feature
+
+[33mcommit ee368b73aa13b237236ab208127e5354b75776e9[m
+Merge: 476314a 1005010
+Author: Heitor Mendes Pereira <93098315+MendesHeitor@users.noreply.github.com>
+Date:   Wed Feb 15 09:26:35 2023 -0300
+
+    Merge pull request #46 from viniciusscala/vinicius_scala/followers_feature
+    
+    add followers feature file
+
+[33mcommit 44b80548c0fa6ece46c29a5c655fdab05b7968dd[m
+Merge: 3954018 d7a8721
+Author: MendesHeitor <hemepe18@gmail.com>
+Date:   Wed Feb 15 09:22:29 2023 -0300
+
+    Merge branch 'main' of https://github.com/MendesHeitor/compartilhamento_reviews
+
+[33mcommit 3954018e2d7860ebfee7e167ce2b6427b1913748[m
+Author: MendesHeitor <hemepe18@gmail.com>
+Date:   Wed Feb 15 09:21:23 2023 -0300
+
+    Improving criar_posts.feature
+
+[33mcommit 10050103e0d6023602740f528c50de522282cd84[m
+Author: Vinícius Scala <viniciusscala@gmail.com>
+Date:   Wed Feb 15 09:03:55 2023 -0300
+
+    fix format
+
+[33mcommit e7883968478725f0bcf6234e0d40d1e6429ff685[m
+Author: Vinícius Scala <viniciusscala@gmail.com>
+Date:   Wed Feb 15 09:01:41 2023 -0300
+
+    add followers feature file
+
+[33mcommit 5c7642059f88ef52c3a5fff0a6ca2b8c7ffe666c[m
+Author: Gabriel Queiroz <gqmv@cin.ufpe.br>
+Date:   Tue Feb 14 22:13:04 2023 -0300
+
+    Solução de erros nas features de busca
+
+[33mcommit bf5831dc65e56cf5be5f1659325d50755b84d6ba[m
+Author: Gabriel Queiroz <gqmv@cin.ufpe.br>
+Date:   Tue Feb 14 22:07:32 2023 -0300
+
+    Remoção de feature por nova especificação do stakeholder
+
+[33mcommit 476314a2ce7374add3572049bc8113b99d7242eb[m
+Merge: 428a3e6 919e0d0
+Author: Gabriel Queiroz <gqmv@cin.ufpe.br>
+Date:   Tue Feb 14 21:52:13 2023 -0300
+
+    Merge pull request #32 from DanielVCC/main
+    
+    Update arquivo .feature do histórico de reviews
+
+[33mcommit 428a3e60c51f2784e142d06e6483b48f1a9e9711[m
+Merge: 41357c5 d7a8721
+Author: Gabriel Queiroz <gqmv@cin.ufpe.br>
+Date:   Tue Feb 14 21:51:50 2023 -0300
+
+    Merge pull request #27 from MendesHeitor/main
+    
+    "Criar Posts" feature
+
+[33mcommit 41357c52671e771df4f3dcee93bdec6ca27fa2ab[m
+Merge: 9c203c8 89b0748
+Author: Gabriel Queiroz <gqmv@cin.ufpe.br>
+Date:   Tue Feb 14 21:51:32 2023 -0300
+
+    Merge pull request #17 from v1lton/wilton_silva/CRUD_user
+    
+    Update user's scenarios from stakeholder interview
+
+[33mcommit 9c203c8413b7c9df466e2a64790fb7523b868686[m
+Merge: c15cbbb 7d5d167
+Author: Gabriel Queiroz <gqmv@cin.ufpe.br>
+Date:   Tue Feb 14 21:50:27 2023 -0300
+
+    Merge pull request #3 from gqmv/main
+    
+    Adição do arquivo .features da feature de busca
+
+[33mcommit b432d4e25aa4052ee9dc9642b2c47c08355fc118[m
+Author: Alvaro Gabriel <agsa0108@gmail.com>
+Date:   Tue Feb 14 18:34:10 2023 -0300
+
+    Update linhas soltas do arquivo .feature
+
+[33mcommit 89b074

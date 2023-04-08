@@ -49,8 +49,9 @@ const CommentSection = () => {
   return (
     <>
       <div style={{ display: 'flex', marginBottom: '8px' }}>
+        <CommentSection userName="João da Silva" />
         <Avatar size={32} src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80" 
-                      style={{width: '32px', height: '32px'}} />
+                      style={{width: '32px', height: '32px'}}/>
         <div style={{ marginLeft: '8px', flexGrow: '1' }}>
           <TextArea
             placeholder="Comment hear..."
@@ -111,7 +112,8 @@ const CommentSection = () => {
             >
             <List.Item.Meta
               avatar={ <Avatar size={32} src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80" 
-                      style={{width: '32px', height: '32px'}} />}
+                      style={{width: '32px', height: '32px'}}
+                       />} 
               title={
                 <div style={{ alignItems: 'center', marginLeft: '8px', flexGrow: '1' }}>
                   <a href="#example">{item.text}</a>
