@@ -15,4 +15,12 @@ class ReviewsController < ApplicationController
     @reviews = @user.reviews
     render json: @reviews
   end
+
+  def reviews_by_category
+    categody = Category.find_by_id(params[:category_id])
+    render json:{ message: "Category not found."}, status: :not_found and return unless category
+
+    @reviews = Review.filter_by_category(category.id)
+    render json: @reviews
+  end
 end
