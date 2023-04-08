@@ -3,6 +3,7 @@ import Home from "./pages/home"
 import Profile from "./pages/Profile"
 import LoginForm from "./pages/LoginForm"
 import SignupForm from "./pages/SignupForm"
+import EditProfile from "./pages/EditProfile"
 import {Routes, Route} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -34,6 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <Home /> }></Route>
           <Route path="/profile" element={<Profile/>}></Route>
+          <Route path="/profile/edit" element={<EditProfile/>}></Route>
         </Routes>
         ) : (
           <Routes>
