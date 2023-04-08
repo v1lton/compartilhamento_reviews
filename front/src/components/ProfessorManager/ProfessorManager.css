@@ -1,0 +1,50 @@
+.professor-manager-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  
+  .professor-manager-title {
+    margin-bottom: 24px;
+  }
+  
+  .professor-manager-input-container {
+    display: flex;
+    margin-bottom: 16px;
+  }
+  
+  .professor-manager-input {
+    flex: 1;
+    margin-right: 16px;
+  }
+  
+  .professor-manager-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    margin-bottom: 8px;
+    margin-left: 10px; /* add a 10px margin to the left of the list item */
+  }
+  
+  .professor-manager-list-item:hover {
+    background-color: #e8e8e8;
+  }
+  
+  .professor-manager-remove-button {
+    margin-left: 16px;
+  }
+  .professor-name {
+    margin-left: 16px;
+  }
+  .professor-manager-remove-button {
+    background-color: #f5222d;
+    border-color: #f5222d;
+    color: #fff;
+  }
+  .professor-manager-list-item-name {
+    margin-left: 8px;
+  }
+  
