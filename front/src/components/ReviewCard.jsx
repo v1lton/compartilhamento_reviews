@@ -3,8 +3,11 @@ import {
   RightOutlined
 } from '@ant-design/icons';
 import User from './User'
+import React, {useStage } from 'react';
+import CommentSection from './CommentSection';
 
 const { Paragraph } = Typography;
+
 
 function ReviewCard({
   studentName,
@@ -53,6 +56,7 @@ function ReviewCard({
         >
           {reviewContent}</Paragraph>
       </main>
+      <CommentSection />
 	  </Card>
   );
 }
