@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, FlagOutlined, TeamOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
-const SignupForm = () => {
+const LoginForm = ({setIsAuthenticated}) => {
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     try {
@@ -11,10 +13,14 @@ const SignupForm = () => {
         username: values.username,
         password: values.password
       }});
+
+      setIsAuthenticated(true)
+      navigate('/');
   
       console.log(response.data);
       // Success handling
     } catch (error) {
+      setIsAuthenticated(false)
       console.error(error);
       // Error handling
     }
@@ -49,6 +55,11 @@ const SignupForm = () => {
         </Form.Item>
 
         <Form.Item>
+          <Button type="link" onClick={() => {
+            navigate('/signup');
+          }}>
+            Criar conta
+          </Button>
           <Button type="primary" htmlType="submit">
             Entrar
           </Button>
@@ -59,4 +70,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default LoginForm;
