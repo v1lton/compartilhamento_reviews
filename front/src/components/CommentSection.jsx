@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { List, Input, Button, Avatar, Popover } from 'antd';
-import { UserOutlined, DeleteOutlined } from '@ant-design/icons';
-import User from "./User";
+import { DeleteOutlined,  HeartOutlined, HeartFilled  } from '@ant-design/icons';
 import moment from 'moment';
 
 
 const { TextArea } = Input;
-const timeStamp = moment().format('HH:mm:ss');
+const timeStamp = moment().format('lll');
 
 
 
@@ -18,20 +17,28 @@ const CommentSection = () => {
     const now = new Date().toLocaleString();
     const newComment = {
       text: comment,
-      timestamp: moment().format('HH:mm:ss')
+      timestamp: moment().format('lll'),
+      likes: 0
     };
-    setComments([...comments, comment]);
+    setComments([...comments, newComment]);
     setComment('');
   };
 
-const [deletingComment, setDeletingComment] = useState(null);
 
-const handleDeleteComment = (index) => {
+  const handleLikeComment = (index) => {
+    const updatedComments = [...comments];
+    updatedComments[index].likes += 1;
+    setComments(updatedComments);
+  };
+
+  const [deletingComment, setDeletingComment] = useState(null);
+
+  const handleDeleteComment = (index) => {
     setComments(comments.filter((_, i) => i !== index));
     setDeletingComment(null);
   };
 
-const handlePopoverVisibleChange = (visible, index) => {
+  const handlePopoverVisibleChange = (visible, index) => {
     if (!visible) {
       setDeletingComment(null);
     } else {
@@ -42,7 +49,8 @@ const handlePopoverVisibleChange = (visible, index) => {
   return (
     <>
       <div style={{ display: 'flex', marginBottom: '8px' }}>
-        <Avatar size={32} icon={<UserOutlined />} />
+        <Avatar size={32} src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80" 
+                      style={{width: '32px', height: '32px'}} />
         <div style={{ marginLeft: '8px', flexGrow: '1' }}>
           <TextArea
             placeholder="Comment hear..."
@@ -68,15 +76,20 @@ const handlePopoverVisibleChange = (visible, index) => {
         renderItem={(item, index) => (
           <List.Item
              actions={[
-                <Popover
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {item.likes > 0 ? (
+                    <span style={{ marginRight: '4px' }}>{item.likes}</span>
+                  ) : null}
+                 <Button type="text" icon={item.likes > 0 ? <HeartFilled /> : <HeartOutlined />}
+                    onClick={() => handleLikeComment(index)}
+                  />
+                </div>,
+                 <Popover
                   content={
                     deletingComment === index ?  (
                     <></>
                     ) : (
                       <>
-                        <Button danger onClick={() => setDeletingComment(null)}>
-                          Cancel
-                        </Button>
                         <Button
                           type="primary"
                           danger
@@ -97,14 +110,14 @@ const handlePopoverVisibleChange = (visible, index) => {
               ]}
             >
             <List.Item.Meta
-              avatar={
-                <Avatar size={32} src={<User imgSrc={item.imgSrc} />} />}
+              avatar={ <Avatar size={32} src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80" 
+                      style={{width: '32px', height: '32px'}} />}
               title={
-                <>
-                  <a href="#example">{item}</a>
-                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', marginLeft: '8px' }}>
-                    {item.timestamp}</span>
-                </>
+                <div style={{ alignItems: 'center', marginLeft: '8px', flexGrow: '1' }}>
+                  <a href="#example">{item.text}</a>
+                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', marginLeft: '650px' }}>
+                  {item.timestamp}</span>
+                </div>
               }
               style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}
             />
