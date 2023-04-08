@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show update destroy ]
-  before_action :logged_in_user, only: %i[update destroy]
+  before_action :logged_in_user, only: %i[show update destroy]
   before_action :correct_user, only: %i[update destroy]
 
   # GET /users

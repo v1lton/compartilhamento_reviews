@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, FlagOutlined, TeamOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
-const SignupForm = () => {
+const SignupForm = ({setIsAuthenticated}) => {
   const [form] = Form.useForm();
   const [confirmDirty, setConfirmDirty] = useState(false);
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     try {
@@ -21,9 +23,12 @@ const SignupForm = () => {
       }});
   
       console.log(response.data);
+      setIsAuthenticated(true);
+      navigate('/');
       // Success handling
     } catch (error) {
       console.error(error);
+      setIsAuthenticated(false);
       // Error handling
     }
   };
