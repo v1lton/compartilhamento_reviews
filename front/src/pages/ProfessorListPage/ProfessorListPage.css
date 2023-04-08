@@ -1,0 +1,26 @@
+.professor-list-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.professor-list-header {
+  background-color: #6a87a3;
+  color: #fff;
+  padding: 16px;
+  text-align: center;
+}
+
+.professor-list-table {
+  margin-top: 24px;
+}
+
+.professor-list-table th {
+  font-weight: bold;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.professor-list-table td {
+  text-align: center;
+}
