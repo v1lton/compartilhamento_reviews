@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/agsa2/compartilhamento_reviews/issues"
   },
-  "homepage": "https://github.com/agsa2/compartilhamento_reviews#readme"
+  "homepage": "https://github.com/agsa2/compartilhamento_reviews#readme",
+  "dependencies": {
+    "moment": "^2.29.4"
+  }
 }
