@@ -55,7 +55,7 @@ function App() {
       />
 
       <Carousel ref={carouselRef} dots={false}>
-        <div>
+        <div data-testid='reviews-section'>
           <main
             style={{
               display: 'flex',
@@ -79,7 +79,7 @@ function App() {
           </main>
         </div>
         <div>
-          <main>
+          <main data-testid='followers-section'>
             {reviews.map((review, index) => (
               <div className='review-card-container'>
                 <Card
