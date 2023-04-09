@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get    'reviews_by_category' => 'reviews#reviews_by_category'
   get    'reviews' => 'reviews#index'
   post   'reviews' => 'reviews#create'
-  get    'reviews/:user_id' => 'reviews#reviews_by_user'
+  get    'reviews_by_user' => 'reviews#reviews_by_user'
   get    'professors' => 'professors#index'
   #Testing only:
   get    'test/categories/reset' => 'categories#reset'
