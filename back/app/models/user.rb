@@ -27,6 +27,10 @@ class User < ApplicationRecord
 
   has_many :reviews
 
+  has_many :teaching_relationships, foreign_key: "user_id", dependent: :destroy
+
+  has_many :professors, through: :teaching_relationships
+
   # Follows a user.
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
@@ -40,6 +44,22 @@ class User < ApplicationRecord
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # Adds a professor.
+  def add_professor(professor)
+    teaching_relationships.create(professor_id: professor.id)
+  end
+
+  # Removes a professor.
+  def remove_professor(professor)
+    teaching_relationship = teaching_relationships.find_by(professor_id: professor.id)
+    teaching_relationship.destroy if teaching_relationship
+  end
+
+  # Returns true if the current user has the professor.
+  def is_professor?(professor)
+    professors.include?(professor)
   end
 
   # Returns the hash digest of the given string.
