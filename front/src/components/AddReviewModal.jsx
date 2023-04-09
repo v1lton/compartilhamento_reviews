@@ -4,19 +4,6 @@ import { SendOutlined } from "@ant-design/icons";
 import axios from "axios";
 const { Option } = Select;
 
-const professors = [
-  "Anderson Costa",
-  "Augusto Sampaio",
-  "Eduardo Alchieri",
-  "Fernando Castor",
-  "Flávio Coutinho",
-  "José Antônio Fernandes de Macedo",
-  "Leopoldo Teixeira",
-  "Márcio Cornélio",
-  "Roberto Fernandes Tavares de Melo",
-  "Thais Batista",
-];
-
 const AddReviewModal = ({ open, handleOk, handleCancel, getReviews}) => {
   useEffect(() => {
     getProfessors();
@@ -70,6 +57,10 @@ const AddReviewModal = ({ open, handleOk, handleCancel, getReviews}) => {
     }
     if (!selectedProfessor) {
       alert("Selecione um professor!");
+      return;
+    }
+    if(!selectedCategory) {
+      alert("Selecione uma categoria!");
       return;
     }
     if (inputValue.length > 999) {
