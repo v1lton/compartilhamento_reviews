@@ -1,10 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 joao:
+  id: 1
   username: JRamos
   email: joao@example.com
   name: Joao
   surname: Ramos de Oliveira
   pronouns: Ele-Delu
   country: Brasil
+  password_digest: <%= User.digest("password") %>
+
+rafa:
+  id: 2
+  username: rafa
+  email: rafa@example.com
+  name: Rafa
+  surname: Fidel
   password_digest: <%= User.digest("password") %>

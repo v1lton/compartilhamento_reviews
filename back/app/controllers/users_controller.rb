@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show update destroy ]
-  before_action :logged_in_user, only: %i[update destroy]
+  before_action :logged_in_user, only: %i[show update destroy]
   before_action :correct_user, only: %i[update destroy]
 
   # GET /users
@@ -25,6 +25,21 @@ class UsersController < ApplicationController
     else
       render json: @user.errors, status: :unprocessable_entity
     end
+  end
+
+  def create_test
+    @user = User.new(user_params)
+
+    if @user.save
+      render json: @user, status: :created, location: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
+  def reset
+    User.destroy_all
+    render json: { status: 'ok' }
   end
 
   # PATCH/PUT /users/1

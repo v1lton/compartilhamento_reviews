@@ -1,56 +1,50 @@
 import { React, useState, useEffect } from "react";
 import { Button } from "antd";
 import ReactDOM from "react-dom";
+import axios from "axios";
 import ReviewCard from "../components/ReviewCard";
 import AddReviewModal from "../components/AddReviewModal";
 import AddReviewButton from "../components/AddReviewButton";
 import { PlusOutlined } from "@ant-design/icons";
+import Search from "../components/Search";
 
-const reviews = [
-  {
-    reviewContent:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-  },
-  {
-    reviewContent:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-  },
-  {
-    reviewContent:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-  },
-  {
-    reviewContent:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-  },
-  {
-    reviewContent:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-  },
-  {
-    reviewContent:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-  },
-  {
-    reviewContent:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-  },
-  {
-    reviewContent:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-  },
-  {
-    reviewContent:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-  },
-];
 
 const Home = () => {
+  const [inputValueSearch, setInputValueSearch] = useState("");
+  const [searchError, setSearchError] = useState("");
+  const [reviews, setReviews] = useState([]);
+  const [addVisible, setAddVisible] = useState(false);
+
+  const executeSearch = async () => {
+    try {
+      if (inputValueSearch === "") {
+        setSearchError(`Nenhuma categoria selecionada`)
+        setReviews([]);
+        return;
+      }
+
+      const result = await axios.get(`http://localhost:3000/reviews_by_category/?category_name=${inputValueSearch}`);
+      setReviews(result.data);
+      console.log(result.data)
+      setSearchError(`Infelizmente não encontramos nenhum resultado para ${inputValueSearch}`)
+    }
+    catch (error) {
+      setSearchError(`A categoria ${inputValueSearch} não existe`)
+      setReviews([]);
+    }
+  };
+
   useEffect(() => {
     document.title = "Página Inicial";
+    getReviews();
   }, []);
 
-  const [addVisible, setAddVisible] = useState(false);
+
+  const getReviews = async () => {
+    const response = await axios.get("http://localhost:3000/reviews");
+    setReviews(response.data);
+    console.log(response.data)
+  };
 
   const showAddModal = () => {
     setAddVisible(true);
@@ -66,7 +60,9 @@ const Home = () => {
 
   return (
     <div className="home-container">
+
       <div className="feed">
+
         <main
           style={{
             display: "flex",
@@ -78,15 +74,16 @@ const Home = () => {
             maxWidth: "1080px",
           }}
         >
-          {reviews.map((review, index) => (
+          <Search onChange={setInputValueSearch} onClick={executeSearch} />
+          {reviews.length > 0 ? reviews.map((review, index) => (
             <div
               style={{
                 marginBottom: "16px",
               }}
             >
-              <ReviewCard key={index} reviewContent={review.reviewContent} />
+              <ReviewCard key={index} reviewContent={review.review_content} studentName={review.user_name} teacherName={review.professor_name} categoryName={review.category_name} />
             </div>
-          ))}
+          )) : <h1 id="search-error">{searchError}</h1>}
         </main>
       </div>
 
@@ -95,6 +92,7 @@ const Home = () => {
         open={addVisible}
         handleOk={handleAddOk}
         handleCancel={handleAddCancel}
+        getReviews={getReviews}
       />
     </div>
   );
