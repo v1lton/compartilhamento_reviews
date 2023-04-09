@@ -17,6 +17,12 @@ const Home = () => {
 
   const executeSearch = async () => {
     try {
+      if (inputValueSearch === "") {
+        setSearchError(`Nenhuma categoria selecionada`)
+        setReviews([]);
+        return;
+      }
+
       const result = await axios.get(`http://localhost:3000/reviews_by_category/?category_name=${inputValueSearch}`);
       setReviews(result.data);
       console.log(result.data)
@@ -32,7 +38,7 @@ const Home = () => {
     document.title = "Página Inicial";
     getReviews();
   }, []);
-  
+
 
   const getReviews = async () => {
     const response = await axios.get("http://localhost:3000/reviews");
@@ -75,9 +81,9 @@ const Home = () => {
                 marginBottom: "16px",
               }}
             >
-              <ReviewCard key={index} reviewContent={review.review_content} studentName={review.user_name} teacherName={review.professor_name} categoryName={review.category_name}/>
+              <ReviewCard key={index} reviewContent={review.review_content} studentName={review.user_name} teacherName={review.professor_name} categoryName={review.category_name} />
             </div>
-          )) : <h1>{searchError}</h1>}
+          )) : <h1 id="search-error">{searchError}</h1>}
         </main>
       </div>
 
