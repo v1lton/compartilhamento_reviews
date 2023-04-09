@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import User from './User';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function ProfileHeader({
   studentName,
@@ -11,6 +12,8 @@ function ProfileHeader({
   goTo,
 }) {
   const [sectionIndex, setSectionIndex] = useState(0);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -29,12 +32,28 @@ function ProfileHeader({
           backgroundColor: "#f5f5f5"
         }}
       >
-            <User alignment='bottom'/>
-            <Button
-              style={{ marginTop: "16px" }}
-            >
-              Seguir
+        {location.pathname === '/profile' && (
+          <div style={{position: 'absolute', left: '16px', top: '16px'}}>
+            <Button onClick={() => {
+              navigate('/profile/edit');
+            }}>
+              Editar perfil
             </Button>
+            <Button
+              style={{ marginLeft: "16px" }}
+            >
+              Editar meus professores
+            </Button>
+          </div>
+        )}
+            <User alignment='bottom'/>
+            {location.pathname !== '/profile' && (
+              <Button
+                style={{ marginTop: "16px" }}
+              >
+                Seguir
+              </Button>
+            )}
 
             <div
               style={{
