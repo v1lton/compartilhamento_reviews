@@ -12,7 +12,8 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    follows = current_user.following?(@user)
+    render json: {user: @user, follows: follows}
   end
 
   # POST /users
