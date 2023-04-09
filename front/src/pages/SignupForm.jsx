@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Alert } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, FlagOutlined, TeamOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const SignupForm = ({setIsAuthenticated}) => {
   const [form] = Form.useForm();
   const [confirmDirty, setConfirmDirty] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
@@ -22,15 +23,16 @@ const SignupForm = ({setIsAuthenticated}) => {
         country: values.country,
       }});
   
-      console.log(response.data);
       setIsAuthenticated(true);
       navigate('/');
-      // Success handling
     } catch (error) {
-      console.error(error);
       setIsAuthenticated(false);
-      // Error handling
+      setErrorMessage("Não foi possível criar uma conta. Por favor, confira seus dados.");
     }
+  };
+
+  const onClose = (e) => {
+    setErrorMessage(null);
   };
 
   const handleConfirmBlur = (e) => {
@@ -38,11 +40,14 @@ const SignupForm = ({setIsAuthenticated}) => {
     setConfirmDirty(confirmDirty || !!value);
   };
   
-  
   return (
     <div style={{ maxWidth: 500, margin: '16px auto 0 auto' }}>
 
       <h1>Cadastro</h1>
+
+      {errorMessage && < Alert message="Erro ao criar nova conta" description={errorMessage} type="error" closable onClose={onClose} />}
+
+      <p></p>
 
       <Form 
         name="basic"

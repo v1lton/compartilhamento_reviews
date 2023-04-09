@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Button } from 'antd';
-import { UserOutlined, LockOutlined, MailOutlined, FlagOutlined, TeamOutlined } from '@ant-design/icons';
+import { Form, Input, Button, Alert } from 'antd';
+import { UserOutlined, MailOutlined, FlagOutlined, TeamOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 const EditProfile = ({setIsAuthenticated}) => {
   const [form] = Form.useForm();
-  const [confirmDirty, setConfirmDirty] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
+  const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
@@ -21,12 +21,10 @@ const EditProfile = ({setIsAuthenticated}) => {
         country: values.country,
       }});
   
-      console.log(response.data);
       navigate('/profile');
-      // Success handling
     } catch (error) {
-      console.error(error);
-      // Error handling
+      setIsAuthenticated(false);
+      setErrorMessage("Não foi possível editar seu perfil. Por favor, confira seus dados.");
     }
   };
 
@@ -35,20 +33,14 @@ const EditProfile = ({setIsAuthenticated}) => {
     try {
       const response = await axios.get('http://localhost:3000/logged_user/');
       setCurrentUser(response.data);
-
-      console.log(response.data);
-      // Success handling
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      console.error(error);
-      // Error handling
     }
   };
 
-  const handleConfirmBlur = (e) => {
-    const { value } = e.target;
-    setConfirmDirty(confirmDirty || !!value);
+  const onClose = (e) => {
+    setErrorMessage(null);
   };
 
   useEffect(() => {
@@ -67,6 +59,10 @@ const EditProfile = ({setIsAuthenticated}) => {
     <div style={{ maxWidth: 500, margin: '16px auto 0 auto' }}>
 
       <h1>Editar perfil</h1>
+
+      {errorMessage && < Alert message="Erro ao edital perfil" description={errorMessage} type="error" closable onClose={onClose} />}
+
+      <p></p>
 
       <Form 
         name="basic"
