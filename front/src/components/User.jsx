@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { Typography } from "antd";
-import { Link } from "react-router-dom";
 const { Title, Paragraph } = Typography;
 
 function User({
@@ -65,7 +64,6 @@ function User({
 
   return (
     <div style={componentStyle}>
-      <Link to="/profile">
         <img
           src={imgSrc}
           alt="Foto de perfil"
@@ -77,7 +75,6 @@ function User({
             border: "5px solid black",
           }}
         />
-      </Link>
       <div style={TextDivStyle}>
         <Paragraph
           style={{
@@ -87,7 +84,6 @@ function User({
         >
           {role}
         </Paragraph>
-        <Link to="/profile">
           <Title
             style={{
               margin: "0 16px",
@@ -96,7 +92,6 @@ function User({
           >
             {userName}
           </Title>
-        </Link>
       </div>
     </div>
   );
