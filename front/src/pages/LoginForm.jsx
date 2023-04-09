@@ -4,7 +4,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-const LoginForm = ({setIsAuthenticated}) => {
+const LoginForm = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -64,7 +64,7 @@ const LoginForm = ({setIsAuthenticated}) => {
           }}>
             Criar conta
           </Button>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" id="basic_login">
             Entrar
           </Button>
         </Form.Item>

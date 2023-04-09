@@ -9,6 +9,21 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def create_test
+    @review = Review.new(user_id: params[:user_id], professor_id: params[:professor_id], category_id: params[:category_id], description: params[:description])
+    
+    if @review.save
+      render json: { review: @review, message: "Created review." }, status: :created
+    else
+      render json: { message: "Review not created."}, status: :unprocessable_entity
+    end
+  end
+
+  def reset
+    Review.destroy_all
+    render json: { status: 'ok' }
+  end
+
   def index
     reviews = Review.order(created_at: :desc).map do |review|
       {

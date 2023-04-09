@@ -37,14 +37,14 @@ function ReviewCard({
           marginTop: "24px",
         }}
       >
-        <Paragraph
+        <Paragraph id="post-content"
           style={{
             fontSize: "24px",
           }}
         >
           {reviewContent}
         </Paragraph>
-        <h1>{categoryName}</h1>
+        <h1 id="post-category">{categoryName}</h1>
       </main>
     </Card>
   );
