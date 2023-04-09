@@ -40,6 +40,8 @@ const reviews = [
 function App() {
   const carouselRef = useRef(null);
   const [currentUser, setCurrentUser] = useState({});
+  const [following, setFollowing] = useState([]);
+  const [followers, setFollowers] = useState([]);
   const [isFollowing, setIsFollowing] = useState(false);
   const {user_id} = useParams()
   const navigate = useNavigate();
@@ -47,17 +49,21 @@ function App() {
   const onLoadProfile = async () => {
     try {
       const response = await axios.get('http://localhost:3000/logged_user/');
-      setCurrentUser(response.data);
+      setCurrentUser(response.data.user);
+      setFollowing(response.data.following);
+      setFollowers(response.data.followers);
     } catch (error) {
       // Error handling
     }
   };
 
-  const onLoadOtherUser = async (values) => {
+  const onLoadOtherUser = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/users/${user_id}`);
       setIsFollowing(response.data.follows);
       setCurrentUser(response.data.user);
+      setFollowing(response.data.following);
+      setFollowers(response.data.followers);
     } catch (error) {
       navigate('/');
     }
@@ -135,7 +141,7 @@ function App() {
         </div>
         <div>
           <main data-testid='followers-section'>
-            {reviews.map((review, index) => (
+            {followers.map((user, index) => (
               <div className='review-card-container'>
                 <Card
                   style={{
@@ -143,7 +149,7 @@ function App() {
                     margin: '8px auto'
                   }}
                 >
-                  <User></User>
+                  <User userName={`${user.name} ${user.surname}`}></User>
                 </Card>
               </div>
             ))}
@@ -151,7 +157,7 @@ function App() {
         </div>
         <div>
           <main>
-            {reviews.map((review, index) => (
+            {following.map((user, index) => (
               <div className='review-card-container'>
                 <Card
                   style={{
@@ -159,7 +165,7 @@ function App() {
                     margin: '8px auto'
                   }}
                 >
-                  <User></User>
+                  <User userName={`${user.name} ${user.surname}`}></User>
                 </Card>
               </div>
             ))}
