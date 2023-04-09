@@ -47,11 +47,13 @@ function ProfileHeader({
           </div>
         )}
             <User alignment='bottom'/>
-            <Button
-              style={{ marginTop: "16px" }}
-            >
-              Seguir
-            </Button>
+            {location.pathname !== '/profile' && (
+              <Button
+                style={{ marginTop: "16px" }}
+              >
+                Seguir
+              </Button>
+            )}
 
             <div
               style={{
