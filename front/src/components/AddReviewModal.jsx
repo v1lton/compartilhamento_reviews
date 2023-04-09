@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { React, useState, useEffect } from "react";
 import { Modal, Select, Input, Button } from "antd";
 import { SendOutlined } from "@ant-design/icons";
+import axios from "axios";
 const { Option } = Select;
 
 const professors = [
@@ -16,12 +17,44 @@ const professors = [
   "Thais Batista",
 ];
 
-const AddReviewModal = ({ open, handleOk, handleCancel }) => {
+const AddReviewModal = ({ open, handleOk, handleCancel, getReviews}) => {
+  useEffect(() => {
+    getProfessors();
+    getCategories();
+  }, []);
+
+  const [professors, setProfessors] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedProfessor, setSelectedProfessor] = useState(null);
   const [inputValue, setInputValue] = useState("");
 
-  const handleChange = (value) => {
+  const getProfessors = async () => {
+    const response = await axios.get("http://localhost:3000/professors");
+    setProfessors(response.data);
+  };
+
+  const getCategories = async () => {
+    const response = await axios.get("http://localhost:3000/categories");
+    setCategories(response.data);
+  };
+
+  const sendReview = () => {
+    axios.post("http://localhost:3000/reviews", {
+      description: inputValue,
+      professor_id: selectedProfessor,
+      category_id: selectedCategory,
+    });
+    getReviews();
+  }
+
+  const handleChangeProfessor = (value) => {
     setSelectedProfessor(value);
+  };
+
+  const handleChangeCategory = (value) => {
+    setSelectedCategory(value);
   };
 
   const handleInputChange = (e) => {
@@ -44,20 +77,10 @@ const AddReviewModal = ({ open, handleOk, handleCancel }) => {
       return;
     }
 
-    console.log(`Selected professor: ${selectedProfessor}`);
-    console.log(`Input value: ${inputValue}`);
-
-    /*
-    
-    todo: send to the reviews db:
-
-    ! the name of the student -> (get from session);
-
-    *the name of the professor -> got it;
-    *the review itself -> got it;
-    
-    */
-
+    sendReview();
+    setSelectedCategory(null);
+    setSelectedProfessor(null);
+    setInputValue("");
     handleCancel();
   };
 
@@ -90,12 +113,25 @@ const AddReviewModal = ({ open, handleOk, handleCancel }) => {
       <Select
         placeholder="Escolha o professor"
         value={selectedProfessor}
-        onChange={handleChange}
+        onChange={handleChangeProfessor}
         style={{ width: "100%", marginBottom: 10 }}
       >
         {professors.map((professor) => (
-          <Option key={professor} value={professor}>
-            {professor}
+          <Option key={professor.id} value={professor.id}>
+            {professor.name}
+          </Option>
+        ))}
+      </Select>
+
+      <Select
+        placeholder="Escolha a categoria"
+        value={selectedCategory}
+        onChange={handleChangeCategory}
+        style={{ width: "100%", marginBottom: 10 }}
+      >
+        {categories.map((category) => (
+          <Option key={category.id} value={category.id}>
+            {category.name}
           </Option>
         ))}
       </Select>

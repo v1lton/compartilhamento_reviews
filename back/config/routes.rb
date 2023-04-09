@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get    'is_logged'  => 'sessions#is_logged'
   get    'categories' => 'categories#index'
   get    'reviews_by_category' => 'reviews#reviews_by_category'
+  get    'reviews' => 'reviews#index'
+  post   'reviews' => 'reviews#create'
+  get    'reviews/:user_id' => 'reviews#reviews_by_user'
+  get    'professors' => 'professors#index'
   resources :users do
     resources :reviews, only: [:index, :create]
     member do
