@@ -2,10 +2,10 @@ import steps.helpers
 from selenium.webdriver import Chrome
 
 
-def before_all(context):
+def before_scenario(context, scenario):
     context.browser = Chrome()
-
-
-def after_all(context):
-    context.browser.quit()
     steps.helpers.reset_db()
+
+
+def after_scenario(context, scenario):
+    context.browser.quit()

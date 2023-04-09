@@ -19,7 +19,7 @@ def criar_usuario(
         }
     }
     response = requests.post(f"{BACKEND}/test/users", json=payload)
-    return response
+    return response.json()
 
 
 def criar_professor(name):
@@ -48,3 +48,5 @@ def reset_db():
     requests.get(f"{BACKEND}/test/professors/reset")
     requests.get(f"{BACKEND}/test/reviews/reset")
     requests.get(f"{BACKEND}/test/users/reset")
+
+criar_usuario("aa", "test@aa.com", "12345678", "aa")
