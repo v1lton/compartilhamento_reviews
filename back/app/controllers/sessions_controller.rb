@@ -1,5 +1,17 @@
 class SessionsController < ApplicationController
-  def new
+
+  def logged_user
+    @user = current_user
+    render json: @user
+  end
+
+  def update_logged_user
+    @user = current_user
+    if @user.update(user_update_params)
+      render json: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   def create
@@ -23,5 +35,10 @@ class SessionsController < ApplicationController
     else
       render json: { logged: false }, status: :not_found
     end
+  end
+
+  private
+  def user_update_params
+    params.require(:user).permit(:email, :name, :surname, :pronouns, :country, :password, :password_confirmation)
   end
 end

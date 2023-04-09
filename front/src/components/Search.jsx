@@ -14,7 +14,9 @@ const SearchBar = ({ onChange, onClick }) => {
                     onChange(e.target.value);
                 }}
                 onPressEnter={onClick}
+                onSearch={onClick}
                 style={{ width: "75%" }}
+                id="search-input"
             />
             <SearchButton onClick={onClick} />
         </div>

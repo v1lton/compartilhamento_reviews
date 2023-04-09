@@ -1,33 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Alert } from 'antd';
-import { UserOutlined, LockOutlined, MailOutlined, FlagOutlined, TeamOutlined } from '@ant-design/icons';
+import { UserOutlined, MailOutlined, FlagOutlined, TeamOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-const SignupForm = ({setIsAuthenticated}) => {
+const EditProfile = ({setIsAuthenticated}) => {
   const [form] = Form.useForm();
-  const [confirmDirty, setConfirmDirty] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
     try {
-      const response = await axios.post('http://localhost:3000/users/', {user: {
-        username: values.username,
+      const response = await axios.patch('http://localhost:3000/update_logged_user/', {user: {
         email: values.email,
-        password: values.password,
-        password_confirmation: values.password_confirmation,
         name: values.name,
         surname: values.surname,
         pronouns: values.pronouns,
         country: values.country,
       }});
   
-      setIsAuthenticated(true);
-      navigate('/');
+      navigate('/profile');
     } catch (error) {
       setIsAuthenticated(false);
-      setErrorMessage("Não foi possível criar uma conta. Por favor, confira seus dados.");
+      setErrorMessage("Não foi possível editar seu perfil. Por favor, confira seus dados.");
+    }
+  };
+
+  const onLoad = async (values) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get('http://localhost:3000/logged_user/');
+      setCurrentUser(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
     }
   };
 
@@ -35,23 +43,31 @@ const SignupForm = ({setIsAuthenticated}) => {
     setErrorMessage(null);
   };
 
-  const handleConfirmBlur = (e) => {
-    const { value } = e.target;
-    setConfirmDirty(confirmDirty || !!value);
-  };
+  useEffect(() => {
+    onLoad();
+  }, []);
+
+  useEffect(() => {
+    console.log('currentUser', currentUser);
+  }, [currentUser]);
+
+  if (isLoading) {
+    return null;
+  }
   
   return (
     <div style={{ maxWidth: 500, margin: '16px auto 0 auto' }}>
 
-      <h1>Cadastro</h1>
+      <h1>Editar perfil</h1>
 
-      {errorMessage && < Alert message="Erro ao criar nova conta" description={errorMessage} type="error" closable onClose={onClose} />}
+      {errorMessage && < Alert message="Erro ao edital perfil" description={errorMessage} type="error" closable onClose={onClose} />}
 
       <p></p>
 
       <Form 
         name="basic"
         onFinish={onFinish}
+        initialValues={currentUser}
       >
         <Form.Item
           name="username"
@@ -71,30 +87,6 @@ const SignupForm = ({setIsAuthenticated}) => {
           ]}
         >
           <Input prefix={<MailOutlined />} placeholder="Email" />
-        </Form.Item>
-
-        <Form.Item
-          name="password"
-          rules={[
-            { required: true, message: 'Por favor, insira sua senha!' },
-            { min: 8, message: 'A senha deve ter pelo menos 8 caracteres!' },
-          ]}
-        >
-          <Input.Password prefix={<LockOutlined />} placeholder="Senha" />
-        </Form.Item>
-
-        <Form.Item
-          name="password_confirmation"
-          dependencies={['password']}
-          rules={[
-            { required: true, message: 'Por favor, confirme sua senha!' }
-          ]}
-        >
-          <Input.Password
-            prefix={<LockOutlined />}
-            placeholder="Confirmar senha"
-            onBlur={handleConfirmBlur}
-          />
         </Form.Item>
 
         <Form.Item
@@ -126,7 +118,7 @@ const SignupForm = ({setIsAuthenticated}) => {
 
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Cadastrar
+            Atualizar
           </Button>
         </Form.Item>
 
@@ -135,4 +127,4 @@ const SignupForm = ({setIsAuthenticated}) => {
   );
 };
 
-export default SignupForm;
+export default EditProfile;

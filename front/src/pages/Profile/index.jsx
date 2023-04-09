@@ -47,8 +47,8 @@ function App() {
         backgroundColor: '#f5f5f5',
       }}
     >
-      
-      <ProfileHeader 
+
+      <ProfileHeader
         goTo={(index) => {
           carouselRef.current.goTo(index)
         }}
@@ -56,7 +56,7 @@ function App() {
 
       <Carousel ref={carouselRef} dots={false}>
         <div data-testid='reviews-section'>
-          <main 
+          <main
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -68,7 +68,7 @@ function App() {
             }}
           >
             {reviews.map((review, index) => (
-              <div 
+              <div
                 style={{
                   marginBottom: '16px'
                 }}
