@@ -4,11 +4,7 @@ import User from './User';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function ProfileHeader({
-  studentName,
-  studentPicture,
-  teacherName,
-  teacherPicture,
-  reviewContent,
+  user,
   goTo,
 }) {
   const [sectionIndex, setSectionIndex] = useState(0);
@@ -46,7 +42,7 @@ function ProfileHeader({
             </Button>
           </div>
         )}
-            <User alignment='bottom'/>
+            <User alignment='bottom' userName={`${user.name} ${user.surname}`} />
             {location.pathname !== '/profile' && (
               <Button
                 style={{ marginTop: "16px" }}
