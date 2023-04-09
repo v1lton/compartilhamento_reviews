@@ -1,6 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
+# Users
 users = User.create([
                       { username: "jramos", name: "João", surname: "Ramos", email: "jramos@example.com", pronouns: "elu/delu", country: "Brasil", password: "password", password_confirmation: "password" },
                       { username: "anasilva", name: "Ana", surname: "Silva", email: "ana.silva@example.com", pronouns: "ela/dela", country: "Brasil", password: "password", password_confirmation: "password" },
@@ -28,3 +29,36 @@ users = User.create([
                       { username: "josemendes", name: "José", surname: "Mendes", email: "jose.mendes@example.com", pronouns: "ele/dele", country: "Portugal", password: "password", password_confirmation: "password" },
                     ])
 
+# Categories
+categories = Category.create([
+                                { name: "Artes" },
+                                { name: "Ciências" },
+                                { name: "Educação" },
+                                { name: "Esportes" },
+                                { name: "Filmes" },
+                                { name: "História" },
+                                { name: "Música" },
+                                { name: "Política" },
+                                { name: "Tecnologia" },
+                                { name: "Viagens" },
+                                ])
+
+# Professors
+professors = Professor.create([
+    { name: "Pedro" },
+    { name: "Mariana" },
+    { name: "Lucas" },
+    { name: "Juliana" },
+    { name: "Gabriel" },
+    { name: "Isabella" },
+    { name: "Carla" },
+                            ])
+
+# Reviews
+reviews = Review.create([
+    { user_id: users[0].id, professor_id: professors[0].id, category_id: categories[0].id, description: "Descricao 1"},
+    { user_id: users[1].id, professor_id: professors[1].id, category_id: categories[1].id, description: "Descricao 2"},
+    { user_id: users[2].id, professor_id: professors[2].id, category_id: categories[2].id, description: "Descricao 3"},
+    { user_id: users[3].id, professor_id: professors[3].id, category_id: categories[3].id, description: "Descricao 4"},
+    { user_id: users[4].id, professor_id: professors[4].id, category_id: categories[4].id, description: "Descricao 5"},
+                        ])
