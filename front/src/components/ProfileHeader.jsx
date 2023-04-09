@@ -61,6 +61,7 @@ function ProfileHeader({
                   setSectionIndex(1);
                 }}
                 type={sectionIndex === 1 ? 'primary' : 'default'}
+                data-testid='followers-button'
               >
                 Seguidores
               </Button>
