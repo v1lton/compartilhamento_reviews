@@ -1,11 +1,12 @@
+Feature: Busca por categoria
+
     # Casos de sucesso
 
     Scenario: Uma postagem presente
-        Given Eu estou na página "Homepage"
-        And Existe uma postagem com o título "Postagem de teste" e categoria "Categoria de teste"
-        And Eu seleciono a categria "Categoria de teste" no campo de busca
-        When Eu clico no botão "Buscar"
-        Then Eu devo ver "Postagem de teste" na lista de resultados
+        Given Eu estou autenticado com o usuário "user" e senha "user-user"
+        And Eu preencho o campo de busca com "Categoria de teste"
+        When Eu clico no botão buscar
+        Then Eu devo ver uma postagem com o conteúdo "Muito bom" e categoria "Categoria de teste"
 
     Scenario: Três postagens presentes
         Given Eu estou na página "Homepage"
