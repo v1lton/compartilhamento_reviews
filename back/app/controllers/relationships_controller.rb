@@ -5,7 +5,7 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
-    user = Relationship.find(params[:id]).followed
-    current_user.unfollow(user)
+    other_user = User.find_by(id: params[:id])
+    current_user.unfollow(other_user )
   end
 end
