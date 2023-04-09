@@ -1,8 +1,9 @@
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Carousel, Card } from 'antd';
 import ReviewCard from '../../components/ReviewCard';
 import ProfileHeader from '../../components/ProfileHeader';
 import User from '../../components/User';
+import axios from 'axios';
 
 const reviews = [
   {
@@ -37,6 +38,20 @@ const reviews = [
 
 function App() {
   const carouselRef = useRef(null);
+  const [currentUser, setCurrentUser] = useState({});
+
+  const onLoad = async (values) => {
+    try {
+      const response = await axios.get('http://localhost:3000/logged_user/');
+      setCurrentUser(response.data);
+    } catch (error) {
+      // Error handling
+    }
+  };
+
+  useEffect(() => {
+    onLoad();
+  }, []);
 
   return (
     <section
@@ -49,6 +64,7 @@ function App() {
     >
 
       <ProfileHeader
+        user={currentUser}
         goTo={(index) => {
           carouselRef.current.goTo(index)
         }}
