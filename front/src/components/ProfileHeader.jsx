@@ -5,6 +5,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 function ProfileHeader({
   user,
+  onFollow,
+  onUnfollow,
+  isFollowing,
   goTo,
 }) {
   const [sectionIndex, setSectionIndex] = useState(0);
@@ -46,8 +49,9 @@ function ProfileHeader({
             {location.pathname !== '/profile' && (
               <Button
                 style={{ marginTop: "16px" }}
+                onClick={isFollowing ? onUnfollow : onFollow}
               >
-                Seguir
+                {isFollowing ? "Deixar de seguir" : "Seguir"}
               </Button>
             )}
 

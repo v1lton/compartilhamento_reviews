@@ -4,6 +4,7 @@ import ReviewCard from '../../components/ReviewCard';
 import ProfileHeader from '../../components/ProfileHeader';
 import User from '../../components/User';
 import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const reviews = [
   {
@@ -39,8 +40,11 @@ const reviews = [
 function App() {
   const carouselRef = useRef(null);
   const [currentUser, setCurrentUser] = useState({});
+  const [isFollowing, setIsFollowing] = useState(false);
+  const {user_id} = useParams()
+  const navigate = useNavigate();
 
-  const onLoad = async (values) => {
+  const onLoadProfile = async () => {
     try {
       const response = await axios.get('http://localhost:3000/logged_user/');
       setCurrentUser(response.data);
@@ -49,8 +53,40 @@ function App() {
     }
   };
 
+  const onLoadOtherUser = async (values) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/users/${user_id}`);
+      setIsFollowing(response.data.follows);
+      setCurrentUser(response.data.user);
+    } catch (error) {
+      navigate('/');
+    }
+  }
+
+  const follow = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/relationships/', { followed_id: user_id });
+      setIsFollowing(true);
+    } catch (error) {
+      // Error handling
+    }
+  }
+
+  const unfollow = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:3000/relationships/${user_id}`);
+      setIsFollowing(false);
+    } catch (error) {
+      // Error handling
+    }
+  }
+
   useEffect(() => {
-    onLoad();
+    if (user_id) {
+      onLoadOtherUser();
+    } else {
+      onLoadProfile();
+    }
   }, []);
 
   return (
@@ -65,6 +101,9 @@ function App() {
 
       <ProfileHeader
         user={currentUser}
+        onFollow={follow}
+        onUnfollow={unfollow}
+        isFollowing={isFollowing}
         goTo={(index) => {
           carouselRef.current.goTo(index)
         }}
