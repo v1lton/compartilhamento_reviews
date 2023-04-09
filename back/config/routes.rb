@@ -11,6 +11,16 @@ Rails.application.routes.draw do
   post   'reviews' => 'reviews#create'
   get    'reviews/:user_id' => 'reviews#reviews_by_user'
   get    'professors' => 'professors#index'
+  #Testing only:
+  get    'test/categories/reset' => 'categories#reset'
+  post   'test/categories' => 'categories#create'
+  get    'test/professors/reset' => 'professors#reset'
+  post   'test/professors' => 'professors#create'
+  get    'test/reviews/reset' => 'reviews#reset'
+  post   'test/reviews' => 'reviews#create_test'
+  get    'test/users/reset' => 'users#reset'
+  post   'test/users' => 'users#create_test'
+
   resources :users do
     resources :reviews, only: [:index, :create]
     member do

@@ -1,4 +1,4 @@
-Feature: criar posts
+Feature: Criar posts
 
     Feature responsável pelo envio das informações contidas em um post.
 
