@@ -77,4 +77,25 @@ class UserTest < ActiveSupport::TestCase
     assert_not joao.following?(rafa)
   end
 
+  ##############
+  # Professors #
+  # ############
+
+  test "should add a professor" do
+    breno = professors(:one)
+    assert_not @user.is_professor?(breno)
+
+    @user.add_professor(breno)
+    assert @user.is_professor?(breno)
+  end
+
+  test "should remove a professor" do
+    breno = professors(:one)
+    assert_not @user.is_professor?(breno)
+    @user.add_professor(breno)
+    assert @user.is_professor?(breno)
+
+    @user.remove_professor(breno)
+    assert_not @user.is_professor?(breno)
+  end
 end

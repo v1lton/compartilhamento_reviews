@@ -37,6 +37,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  def index_professors
+    render json: current_user.professors
+  end
+
   private
   def user_update_params
     params.require(:user).permit(:email, :name, :surname, :pronouns, :country, :password, :password_confirmation)
