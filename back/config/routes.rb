@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get    'index_professors' => 'sessions#index_professors'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
@@ -28,4 +29,5 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only: [:create, :destroy]
+  resources :teaching_relationships, only: [:create, :destroy]
 end
