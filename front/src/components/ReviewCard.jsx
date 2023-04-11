@@ -4,6 +4,7 @@ import User from "./User";
 
 const { Paragraph } = Typography;
 
+
 function ReviewCard({
   studentName,
   studentPicture,
@@ -46,7 +47,8 @@ function ReviewCard({
         </Paragraph>
         <h1 id="post-category">{categoryName}</h1>
       </main>
-    </Card>
+      <CommentSection />
+	  </Card>
   );
 }
 
