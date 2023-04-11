@@ -38,6 +38,7 @@ function App() {
           <Route path="/profile" element={<Profile/>}></Route>
           <Route path="/profile/edit" element={<EditProfile/>}></Route>
           <Route path="/myprofessors" element={<ProfessorListPage/>}></Route>
+          <Route path="/user/:user_id" element={<Profile/>}></Route>
         </Routes>
         ) : (
           <Routes>

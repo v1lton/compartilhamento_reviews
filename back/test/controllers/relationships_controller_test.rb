@@ -1,6 +1,6 @@
 require "test_helper"
 
-class RelationshipsControllerTest < ActionDispatch::IntegrationTest
+class RelationshipsControllerTest < ActionController::TestCase
   def setup
     @user = users(:joao)
     @other_user = users(:rafa)
