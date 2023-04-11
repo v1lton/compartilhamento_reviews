@@ -12,7 +12,10 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    follows = current_user.following?(@user)
+    following = @user.following
+    followers = @user.followers
+    render json: { user: @user, follows: follows, following: following, followers: followers }
   end
 
   # POST /users

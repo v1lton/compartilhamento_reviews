@@ -4,11 +4,10 @@ import User from './User';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function ProfileHeader({
-  studentName,
-  studentPicture,
-  teacherName,
-  teacherPicture,
-  reviewContent,
+  user,
+  onFollow,
+  onUnfollow,
+  isFollowing,
   goTo,
 }) {
   const [sectionIndex, setSectionIndex] = useState(0);
@@ -46,12 +45,13 @@ function ProfileHeader({
             </Button>
           </div>
         )}
-            <User alignment='bottom'/>
+            <User alignment='bottom' userName={`${user.name} ${user.surname}`} />
             {location.pathname !== '/profile' && (
               <Button
                 style={{ marginTop: "16px" }}
+                onClick={isFollowing ? onUnfollow : onFollow}
               >
-                Seguir
+                {isFollowing ? "Deixar de seguir" : "Seguir"}
               </Button>
             )}
 
