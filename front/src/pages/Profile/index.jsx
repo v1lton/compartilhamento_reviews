@@ -1,8 +1,10 @@
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Carousel, Card } from 'antd';
 import ReviewCard from '../../components/ReviewCard';
 import ProfileHeader from '../../components/ProfileHeader';
 import User from '../../components/User';
+import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const reviews = [
   {
@@ -37,6 +39,61 @@ const reviews = [
 
 function App() {
   const carouselRef = useRef(null);
+  const [currentUser, setCurrentUser] = useState({});
+  const [following, setFollowing] = useState([]);
+  const [followers, setFollowers] = useState([]);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const {user_id} = useParams()
+  const navigate = useNavigate();
+
+  const onLoadProfile = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/logged_user/');
+      setCurrentUser(response.data.user);
+      setFollowing(response.data.following);
+      setFollowers(response.data.followers);
+    } catch (error) {
+      // Error handling
+    }
+  };
+
+  const onLoadOtherUser = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/users/${user_id}`);
+      setIsFollowing(response.data.follows);
+      setCurrentUser(response.data.user);
+      setFollowing(response.data.following);
+      setFollowers(response.data.followers);
+    } catch (error) {
+      navigate('/');
+    }
+  }
+
+  const follow = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/relationships/', { followed_id: user_id });
+      setIsFollowing(true);
+    } catch (error) {
+      // Error handling
+    }
+  }
+
+  const unfollow = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:3000/relationships/${user_id}`);
+      setIsFollowing(false);
+    } catch (error) {
+      // Error handling
+    }
+  }
+
+  useEffect(() => {
+    if (user_id) {
+      onLoadOtherUser();
+    } else {
+      onLoadProfile();
+    }
+  }, []);
 
   return (
     <section
@@ -49,6 +106,10 @@ function App() {
     >
 
       <ProfileHeader
+        user={currentUser}
+        onFollow={follow}
+        onUnfollow={unfollow}
+        isFollowing={isFollowing}
         goTo={(index) => {
           carouselRef.current.goTo(index)
         }}
@@ -80,7 +141,7 @@ function App() {
         </div>
         <div>
           <main data-testid='followers-section'>
-            {reviews.map((review, index) => (
+            {followers.map((user, index) => (
               <div className='review-card-container'>
                 <Card
                   style={{
@@ -88,7 +149,7 @@ function App() {
                     margin: '8px auto'
                   }}
                 >
-                  <User></User>
+                  <User userName={`${user.name} ${user.surname}`}></User>
                 </Card>
               </div>
             ))}
@@ -96,7 +157,7 @@ function App() {
         </div>
         <div>
           <main>
-            {reviews.map((review, index) => (
+            {following.map((user, index) => (
               <div className='review-card-container'>
                 <Card
                   style={{
@@ -104,7 +165,7 @@ function App() {
                     margin: '8px auto'
                   }}
                 >
-                  <User></User>
+                  <User userName={`${user.name} ${user.surname}`}></User>
                 </Card>
               </div>
             ))}
