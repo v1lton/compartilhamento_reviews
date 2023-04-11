@@ -5,6 +5,7 @@ import { PlusOutlined } from "@ant-design/icons";
 const AddReviewButton = ({onClick}) => {
   return (
     <Button
+      id="create-new-post"
       type="primary"
       shape="circle"
       size="large"

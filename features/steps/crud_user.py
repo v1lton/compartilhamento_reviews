@@ -10,7 +10,7 @@ def step_impl(context, username, password):
     context.browser.find_element("id", "basic_username").send_keys(username)
     context.browser.find_element("id", "basic_password").send_keys(password)
     context.browser.find_element("id", "basic_login").click()
-    sleep(1)
+    sleep(2)
 
 
 @given(

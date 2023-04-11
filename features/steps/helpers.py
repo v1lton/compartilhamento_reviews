@@ -1,4 +1,5 @@
 import requests
+from time import sleep
 
 BACKEND = "http://localhost:3000"
 
@@ -44,9 +45,9 @@ def criar_review(description, category_id, professor_id, user_id):
 
 
 def reset_db():
+    requests.get(f"{BACKEND}/test/reviews/reset")
     requests.get(f"{BACKEND}/test/categories/reset")
     requests.get(f"{BACKEND}/test/professors/reset")
-    requests.get(f"{BACKEND}/test/reviews/reset")
     requests.get(f"{BACKEND}/test/users/reset")
 
 criar_usuario("aa", "test@aa.com", "12345678", "aa")
