@@ -16,11 +16,5 @@ class ProfessorsController < ApplicationController
     def reset
         Professor.destroy_all
         render json: { status: 'ok' }
-    end
-
-    def professors_user
-        user_professors = current_user.professors
-        render json: user_professors
-    end
-    
+    end    
 end
