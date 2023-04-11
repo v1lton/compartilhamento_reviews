@@ -6,3 +6,6 @@ import helpers
 def step_impl(context, name):
     result = helpers.criar_professor(name)
     assert result["name"] == name
+
+
+@given

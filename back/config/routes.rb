@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post   'reviews' => 'reviews#create'
   get    'reviews_by_user' => 'reviews#reviews_by_user'
   get    'professors' => 'professors#index'
+  get    'professors_by_user' => 'teaching_relationships#professors_user'
+
   #Testing only:
   get    'test/categories/reset' => 'categories#reset'
   post   'test/categories' => 'categories#create'
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
   post   'test/reviews' => 'reviews#create_test'
   get    'test/users/reset' => 'users#reset'
   post   'test/users' => 'users#create_test'
+  post   'test/professors_user_add' => 'teaching_relationships#professors_user_add'
 
   resources :users do
     resources :reviews, only: [:index, :create]

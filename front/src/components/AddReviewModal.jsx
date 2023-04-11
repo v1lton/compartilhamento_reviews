@@ -18,8 +18,9 @@ const AddReviewModal = ({ open, handleOk, handleCancel, getReviews}) => {
   const [inputValue, setInputValue] = useState("");
 
   const getProfessors = async () => {
-    const response = await axios.get("http://localhost:3000/professors");
+    const response = await axios.get("http://localhost:3000/professors_by_user");
     setProfessors(response.data);
+    console.log("aqui a pica", response.data)
   };
 
   const getCategories = async () => {
@@ -32,8 +33,9 @@ const AddReviewModal = ({ open, handleOk, handleCancel, getReviews}) => {
       description: inputValue,
       professor_id: selectedProfessor,
       category_id: selectedCategory,
-    });
-    getReviews();
+    }).then(
+      getReviews()
+    )
   }
 
   const handleChangeProfessor = (value) => {
