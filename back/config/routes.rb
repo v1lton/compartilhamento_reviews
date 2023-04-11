@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get    'is_logged'  => 'sessions#is_logged'
   get    'categories' => 'categories#index'
   get    'logged_user' => 'sessions#logged_user'
+  delete 'logged_user' => 'sessions#destroy_logged_user'
   patch  'update_logged_user' => 'sessions#update_logged_user'
   get    'reviews_by_category' => 'reviews#reviews_by_category'
   get    'reviews' => 'reviews#index'
