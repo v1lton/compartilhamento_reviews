@@ -74,7 +74,7 @@ const Home = () => {
             maxWidth: "1080px",
           }}
         >
-          <Search onChange={setInputValueSearch} onClick={executeSearch} />
+          <Search onChange={setInputValueSearch} onExecute={executeSearch} />
           {reviews.length > 0 ? reviews.map((review, index) => (
             <div
               style={{
