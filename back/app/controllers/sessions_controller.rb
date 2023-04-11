@@ -2,7 +2,9 @@ class SessionsController < ApplicationController
 
   def logged_user
     @user = current_user
-    render json: @user
+    following = current_user.following
+    followers = current_user.followers
+    render json: { user: @user, following: following, followers: followers }
   end
 
   def update_logged_user
