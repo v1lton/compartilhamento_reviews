@@ -1,21 +1,36 @@
 import { useState, useEffect } from "react";
-import { Button, Input, List, Typography, Row, Col } from "antd";
+import { Button, List, Typography, Row, Col , Select} from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import axios from "axios"
 import "./ProfessorManager.css";
 
 const { Title } = Typography;
+const { Option } = Select;
 
 const ProfessorManager = () => {
   const [professors, setProfessors] = useState([]);
-  const [newProfessor, setNewProfessor] = useState("");
+  const [myProfessors, setMyProfessors] = useState([]);
+  const [selectedProfessor, setSelectedProfessor] = useState("");
 
-  const handleGetProfessors = async () => {
+  const fetchMyProfessors = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/index_professors/')
+      setMyProfessors(response.data)
+      return response.data
+      // Success handling
+    }
+    catch (error) {
+      console.error(error);
+      // Error handling
+    }
+  };
+
+  const fetchProfessors = async () => {
     try {
       const response = await axios.get('http://localhost:3000/professors/')
-    return response.data
-    console.log(response.data);
-    // Success handling
+      setProfessors(response.data)
+      return response.data
+      // Success handling
     }
     catch (error) {
       console.error(error);
@@ -24,36 +39,28 @@ const ProfessorManager = () => {
   };
 
   useEffect(() => {
-    // const response = handleGetProfessors()
-    // setProfessors(response);
+    fetchProfessors()
+    fetchMyProfessors()
   }, [])
 
-  const handleAddProfessor = () => {
-    if (newProfessor !== "") {
-      setProfessors([...professors, newProfessor]);
-      setNewProfessor("");
+  const handleAddProfessor = async () => {
+    if (selectedProfessor !== "" && !myProfessors.includes(selectedProfessor)) {
+      try {
+        await axios.post('http://localhost:3000/teaching_relationships/', {professor_id: selectedProfessor.id});
+        setMyProfessors([...myProfessors, selectedProfessor]);
+        setSelectedProfessor("");
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
-  const handleRemoveProfessor = (professor) => {
-    setProfessors(professors.filter((p) => p !== professor));
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleAddProfessor();
-    }
-  };
-
-
-  const handleSaveProfessors = async (values) => {
+  const handleRemoveProfessor = async (professor) => {
     try {
-      const response = await axios.post('http://localhost:3000/professors/', {professorsList: professors});
-      console.log(response.data);
-      // Success handling
+      await axios.delete(`http://localhost:3000/teaching_relationships/${professor.id}`);
+      setMyProfessors(myProfessors.filter((p) => p !== professor));
     } catch (error) {
       console.error(error);
-      // Error handling
     }
   };
 
@@ -63,13 +70,23 @@ const ProfessorManager = () => {
         Manage Professors
       </Title>
       <div className="professor-manager-input-container">
-        <Input
-          value={newProfessor}
-          onChange={(e) => setNewProfessor(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Enter a professor's name"
-          className="professor-manager-input"
-        />
+      <Select
+          showSearch
+          style={{ width: "50%", margin: "0 auto" }}
+          value={selectedProfessor.name}
+          onSelect={(value) => setSelectedProfessor(professors.find(x => x.id === value))}//professors.find(x => x.id === value.id))}
+          placeholder="Select a professor"
+          optionFilterProp="children"
+          filterOption={(input, option) =>
+            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
+        >
+          {professors.map((professor) => (
+            <Option key={professor.id} value={professor.id}>
+              {professor.name}
+            </Option>
+          ))}
+        </Select>
         <Button type="primary" onClick={handleAddProfessor}>
           Add
         </Button>
@@ -78,11 +95,11 @@ const ProfessorManager = () => {
       <Row justify="center">
         <Col span={20}>
           <List
-            dataSource={professors}
+            dataSource={myProfessors}
             renderItem={(item) => (
               <List.Item className="professor-manager-list-item">
                 <div className="professor-manager-name">
-                <span className="professor-manager-list-item-name">{item}</span>
+                <span className="professor-manager-list-item-name">{item.name}</span>
                 </div>
                 <Button
                   type="danger"
@@ -97,12 +114,10 @@ const ProfessorManager = () => {
         </Col>
       </Row>
 
-      <Button type="primary" onClick={handleSaveProfessors}>
-        Save
-      </Button>
-
     </div>
   );
 };
+
+
 
 export default ProfessorManager;
