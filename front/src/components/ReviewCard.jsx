@@ -13,7 +13,7 @@ function ReviewCard({
   categoryName,
 }) {
   return (
-    <Card bordered={false} style={{ width: "fit-content" }}>
+    <Card id="post-card" bordered={false} style={{ width: "fit-content" }}>
       <header
         style={{
           display: "flex",

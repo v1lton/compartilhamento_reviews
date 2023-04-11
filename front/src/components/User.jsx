@@ -9,6 +9,12 @@ function User({
   imgSize = "100px",
   role = "Discente",
 }) {
+
+  const id = () => {
+    if(role == "Discente") return "post-user"
+    if(role == "Docente") return "post-professor"
+  }
+  
   const componentStyle = useMemo(() => {
     switch (alignment) {
       case "left":
@@ -89,6 +95,7 @@ function User({
               margin: "0 16px",
               textAlign: "center",
             }}
+            id={id()}
           >
             {userName}
           </Title>

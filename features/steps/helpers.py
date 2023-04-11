@@ -1,4 +1,5 @@
 import requests
+from time import sleep
 
 BACKEND = "http://localhost:3000"
 
@@ -21,8 +22,11 @@ def criar_usuario(
     response = requests.post(f"{BACKEND}/test/users", json=payload)
     return response.json()
 
-def adicionar_prof_uusario(name):
-    response = requests.post(f"{BACKEND}/test/professors_user_add", json={"name": name})
+def adicionar_prof_usuario(professor, user):
+    response = requests.post(f"{BACKEND}/test/professors_user_add", json={
+        "professor_name": professor,
+        "user_name": user
+    })
     return response.json()["professor"]
 
 def criar_professor(name):
@@ -47,9 +51,9 @@ def criar_review(description, category_id, professor_id, user_id):
 
 
 def reset_db():
+    requests.get(f"{BACKEND}/test/reviews/reset")
     requests.get(f"{BACKEND}/test/categories/reset")
     requests.get(f"{BACKEND}/test/professors/reset")
-    requests.get(f"{BACKEND}/test/reviews/reset")
     requests.get(f"{BACKEND}/test/users/reset")
 
 criar_usuario("aa", "test@aa.com", "12345678", "aa")

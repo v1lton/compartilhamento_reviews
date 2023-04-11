@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import select from 'react-select'
 import { Modal, Select, Input, Button } from "antd";
 import { SendOutlined } from "@ant-design/icons";
 import axios from "axios";
@@ -54,7 +55,7 @@ const AddReviewModal = ({ open, handleOk, handleCancel, getReviews}) => {
 
   const handleSendClick = () => {
     if (!inputValue) {
-      alert("Escreva uma review!");
+      alert("Escreva um review!");
       return;
     }
     if (!selectedProfessor) {
@@ -85,6 +86,7 @@ const AddReviewModal = ({ open, handleOk, handleCancel, getReviews}) => {
       onCancel={handleCancel}
       footer={[
         <Button
+          id="send-post"
           type="primary"
           onClick={handleSendClick}
           icon={<SendOutlined />}
@@ -92,6 +94,7 @@ const AddReviewModal = ({ open, handleOk, handleCancel, getReviews}) => {
       ]}
     >
       <Input.TextArea
+        id="new-post-input"
         placeholder="Qual sua opninião sobre o professor?"
         value={inputValue}
         onChange={handleInputChange}
@@ -104,26 +107,28 @@ const AddReviewModal = ({ open, handleOk, handleCancel, getReviews}) => {
       />
 
       <Select
+        id="new-post-professor"
         placeholder="Escolha o professor"
         value={selectedProfessor}
         onChange={handleChangeProfessor}
         style={{ width: "100%", marginBottom: 10 }}
       >
         {professors.map((professor) => (
-          <Option key={professor.id} value={professor.id}>
+          <Option id={professor.name} key={professor.id} value={professor.id}>
             {professor.name}
           </Option>
         ))}
       </Select>
 
       <Select
+        id="new-post-category"
         placeholder="Escolha a categoria"
         value={selectedCategory}
         onChange={handleChangeCategory}
         style={{ width: "100%", marginBottom: 10 }}
       >
         {categories.map((category) => (
-          <Option key={category.id} value={category.id}>
+          <Option id={category.name} key={category.id} value={category.id}>
             {category.name}
           </Option>
         ))}

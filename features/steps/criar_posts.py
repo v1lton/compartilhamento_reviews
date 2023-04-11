@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 @given('Eu clico no botão Novo Review')
 def step_impl(context):
+    sleep(2)
     context.browser.find_element('id', 'create-new-post').click()
 
 
