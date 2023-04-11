@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Button } from 'antd';
 import User from './User';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { LogoutOutlined } from '@ant-design/icons';
+import axios from 'axios';
 
 function ProfileHeader({
   user,
@@ -9,10 +11,21 @@ function ProfileHeader({
   onUnfollow,
   isFollowing,
   goTo,
+  setIsAuthenticated
 }) {
   const [sectionIndex, setSectionIndex] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const logOut = async () => {
+    try {
+      const response = await axios.delete('http://localhost:3000/logout');
+      setIsAuthenticated(false);
+      navigate("/");
+    } catch (error) {
+      console.error("Não foi possível deslogar da sua conta.");
+    }
+  };
 
   return (
     <>
@@ -33,9 +46,18 @@ function ProfileHeader({
       >
         {location.pathname === '/profile' && (
           <div style={{position: 'absolute', left: '16px', top: '16px'}}>
-            <Button onClick={() => {
-              navigate('/profile/edit');
-            }}>
+            <Button 
+              danger
+              onClick={logOut}
+            >
+              <LogoutOutlined />
+            </Button>
+            <Button 
+              style={{ marginLeft: "16px" }}
+              onClick={() => {
+                navigate('/profile/edit');
+              }}
+            >
               Editar perfil
             </Button>
             <Button
@@ -113,12 +135,38 @@ function ProfileHeader({
             visibility: 'hidden',
           }}
         >
-            <User alignment='bottom'/>
-            <Button
-              style={{ marginTop: "16px" }}
+            {location.pathname === '/profile' && (
+          <div style={{position: 'absolute', left: '16px', top: '16px'}}>
+            <Button 
+              danger
+              onClick={() => {}}
             >
-              Seguir
+              <LogoutOutlined />
             </Button>
+            <Button 
+              style={{ marginLeft: "16px" }}
+              onClick={() => {
+                navigate('/profile/edit');
+              }}
+            >
+              Editar perfil
+            </Button>
+            <Button
+              style={{ marginLeft: "16px" }}
+            >
+              Editar meus professores
+            </Button>
+          </div>
+        )}
+            <User alignment='bottom' userName={`${user.name} ${user.surname}`} />
+            {location.pathname !== '/profile' && (
+              <Button
+                style={{ marginTop: "16px" }}
+                onClick={isFollowing ? onUnfollow : onFollow}
+              >
+                {isFollowing ? "Deixar de seguir" : "Seguir"}
+              </Button>
+            )}
 
             <div
               style={{
@@ -130,8 +178,6 @@ function ProfileHeader({
               }}
             >
               <Button 
-                className='section-button' 
-                style={{ margin: "0 8px" }}
                 onClick={() => {
                   goTo(0);
                   setSectionIndex(0);
@@ -141,17 +187,17 @@ function ProfileHeader({
                 Reviews
               </Button>
               <Button 
-                className='section-button' 
+                style={{ margin: "0 8px" }}
                 onClick={() => {
                   goTo(1);
                   setSectionIndex(1);
                 }}
                 type={sectionIndex === 1 ? 'primary' : 'default'}
+                data-testid='followers-button'
               >
                 Seguidores
               </Button>
               <Button 
-                className='section-button' 
                 onClick={() => {
                   goTo(2);
                   setSectionIndex(2);;
@@ -161,7 +207,6 @@ function ProfileHeader({
                 Seguindo
               </Button>
             </div>
-
         </header>
     </>
   );

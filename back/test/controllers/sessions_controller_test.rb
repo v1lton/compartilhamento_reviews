@@ -11,7 +11,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test "should get logged_user" do
     get logged_user_url, as: :json
     assert_response :success
-    assert_equal @user.username, response.parsed_body["username"]
+    assert_equal @user.username, response.parsed_body["user"]["username"]
   end
 
   test "should update logged_user" do
@@ -88,6 +88,16 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :not_found
     assert_equal false, response.parsed_body["logged"]
+  end
+
+  test "should destroy logged used" do
+    user_id = @user.id
+
+    assert_difference('User.count', -1) do
+      delete logged_user_url
+    end
+
+    assert_nil User.find_by_id(user_id)
   end
 
   private
