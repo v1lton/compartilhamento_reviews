@@ -37,7 +37,7 @@ const reviews = [
 
 ]
 
-function App() {
+function Profile({setIsAuthenticated}) {
   const carouselRef = useRef(null);
   const [currentUser, setCurrentUser] = useState({});
   const [following, setFollowing] = useState([]);
@@ -100,7 +100,6 @@ function App() {
       style={{
         minHeight: '100vh',
         height: '100%',
-        // width: '100vw',
         backgroundColor: '#f5f5f5',
       }}
     >
@@ -113,6 +112,7 @@ function App() {
         goTo={(index) => {
           carouselRef.current.goTo(index)
         }}
+        setIsAuthenticated={setIsAuthenticated}
       />
 
       <Carousel ref={carouselRef} dots={false}>
@@ -177,4 +177,4 @@ function App() {
   );
 }
 
-export default App;
+export default Profile;

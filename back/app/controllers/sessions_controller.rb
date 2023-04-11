@@ -16,6 +16,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy_logged_user
+    current_user.destroy!
+  end
+
   def create
     user = User.find_by(username: params[:session][:username])
     if user && user.authenticate(params[:session][:password])

@@ -28,14 +28,25 @@ const EditProfile = ({setIsAuthenticated}) => {
     }
   };
 
-  const onLoad = async (values) => {
+  const onLoad = async () => {
     setIsLoading(true);
     try {
       const response = await axios.get('http://localhost:3000/logged_user/');
-      setCurrentUser(response.data);
+      setCurrentUser(response.data.user);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
+    }
+  };
+
+  const deleteAccount = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.delete('http://localhost:3000/logged_user/');
+      setIsAuthenticated(false);
+      navigate("/");
+    } catch (error) {
+      console.error("Não foi possível excluir a sua conta.");
     }
   };
 
@@ -46,10 +57,6 @@ const EditProfile = ({setIsAuthenticated}) => {
   useEffect(() => {
     onLoad();
   }, []);
-
-  useEffect(() => {
-    console.log('currentUser', currentUser);
-  }, [currentUser]);
 
   if (isLoading) {
     return null;
@@ -117,6 +124,9 @@ const EditProfile = ({setIsAuthenticated}) => {
         </Form.Item>
 
         <Form.Item>
+          <Button type="primary" danger style={{marginRight: 16}} onClick={deleteAccount}>
+            Deletar conta
+          </Button>
           <Button type="primary" htmlType="submit">
             Atualizar
           </Button>

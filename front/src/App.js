@@ -35,8 +35,8 @@ function App() {
       {isAuthenticated ? (
         <Routes>
           <Route path="/" element={ <Home /> }></Route>
-          <Route path="/profile" element={<Profile/>}></Route>
-          <Route path="/profile/edit" element={<EditProfile/>}></Route>
+          <Route path="/profile" element={<Profile setIsAuthenticated={setIsAuthenticated}/>}></Route>
+          <Route path="/profile/edit" element={<EditProfile setIsAuthenticated={setIsAuthenticated}/>}></Route>
           <Route path="/myprofessors" element={<ProfessorListPage/>}></Route>
           <Route path="/user/:user_id" element={<Profile/>}></Route>
         </Routes>
