@@ -19,7 +19,7 @@ const AddReviewModal = ({ open, handleOk, handleCancel, getReviews}) => {
   const [inputValue, setInputValue] = useState("");
 
   const getProfessors = async () => {
-    const response = await axios.get("http://localhost:3000/professors_by_user");
+    const response = await axios.get("http://localhost:3000/index_professors/");
     setProfessors(response.data);
     console.log("aqui a pica", response.data)
   };

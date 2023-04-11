@@ -71,6 +71,7 @@ const ProfessorManager = () => {
       </Title>
       <div className="professor-manager-input-container">
       <Select
+          id="manage-professors-select"
           showSearch
           style={{ width: "50%", margin: "0 auto" }}
           value={selectedProfessor.name}
@@ -82,12 +83,12 @@ const ProfessorManager = () => {
           }
         >
           {professors.map((professor) => (
-            <Option key={professor.id} value={professor.id}>
+            <Option id={professor.name} key={professor.id} value={professor.id}>
               {professor.name}
             </Option>
           ))}
         </Select>
-        <Button type="primary" onClick={handleAddProfessor}>
+        <Button id="add-professor-button" type="primary" onClick={handleAddProfessor}>
           Add
         </Button>
       </div>

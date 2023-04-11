@@ -8,34 +8,39 @@ from selenium.webdriver.support import expected_conditions as EC
 
 @given('Eu clico no botão Novo Review')
 def step_impl(context):
-    sleep(2)
+    sleep(1)
     context.browser.find_element('id', 'create-new-post').click()
+    sleep(1)
 
 
 @given('Eu digito "{content}" para descrição')
 def step_impl(context, content):
+    sleep(1)
     context.browser.find_element("id", "new-post-input").send_keys(content)
-
+    sleep(1)
 
 @given('Eu seleciono a categoria "{category}"')
 def step_impl(context, category):
+    sleep(1)
     context.browser.find_element(By.ID, "new-post-category").click()
     sleep(1)
     context.browser.find_element(By.ID, category).click()
     sleep(1)
 
-
 @given('Eu seleciono o professor "{professor}"')
 def step_impl(context, professor):
+    sleep(1)
     context.browser.find_element(By.ID, "new-post-professor").click()
     sleep(1)
     context.browser.find_element(By.ID, professor).click()
+    sleep(1)
 
 
 @when('Eu clicar no botão enviar')
 def step_impl(context):
+    sleep(1)
     context.browser.find_element('id', 'send-post').click()
-    sleep(2)
+    sleep(1)
 
 
 @then('Eu devo ver o um review com a descrição "{description}" feito pelo usuario "{user}" sobre o professor "{professor}" e com a categoria "{category}"')

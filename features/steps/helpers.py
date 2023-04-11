@@ -22,12 +22,6 @@ def criar_usuario(
     response = requests.post(f"{BACKEND}/test/users", json=payload)
     return response.json()
 
-def adicionar_prof_usuario(professor, user):
-    response = requests.post(f"{BACKEND}/test/professors_user_add", json={
-        "professor_name": professor,
-        "user_name": user
-    })
-    return response.json()["professor"]
 
 def criar_professor(name):
     response = requests.post(f"{BACKEND}/test/professors", json={"name": name})
