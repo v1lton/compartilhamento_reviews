@@ -11,6 +11,7 @@ def step_impl(context):
     sleep(1)
     context.browser.find_element('id', 'create-new-post').click()
     sleep(1)
+    context.browser.refresh()
 
 
 @given('Eu digito "{content}" para descrição')
@@ -41,6 +42,7 @@ def step_impl(context):
     sleep(1)
     context.browser.find_element('id', 'send-post').click()
     sleep(1)
+    context.browser.refresh()
 
 
 @then('Eu devo ver o um review com a descrição "{description}" feito pelo usuario "{user}" sobre o professor "{professor}" e com a categoria "{category}"')
