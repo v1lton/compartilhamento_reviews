@@ -64,11 +64,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_url(@user), as: :json
 
     assert_response :success
-    assert_equal @user.username, response.parsed_body["username"]
-    assert_equal @user.email, response.parsed_body["email"]
-    assert_equal @user.surname, response.parsed_body["surname"]
-    assert_equal @user.pronouns, response.parsed_body["pronouns"]
-    assert_equal @user.country, response.parsed_body["country"]
+    assert_equal @user.username, response.parsed_body["user"]["username"]
+    assert_equal @user.email, response.parsed_body["user"]["email"]
+    assert_equal @user.surname, response.parsed_body["user"]["surname"]
+    assert_equal @user.pronouns, response.parsed_body["user"]["pronouns"]
+    assert_equal @user.country, response.parsed_body["user"]["country"]
   end
 
   test "should update user" do
