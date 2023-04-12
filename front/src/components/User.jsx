@@ -70,17 +70,6 @@ function User({
 
   return (
     <div style={componentStyle}>
-        <img
-          src={imgSrc}
-          alt="Foto de perfil"
-          style={{
-            width: imgSize,
-            height: imgSize,
-            objectFit: "cover",
-            borderRadius: "50%",
-            border: "5px solid black",
-          }}
-        />
       <div style={TextDivStyle}>
         <Paragraph
           style={{

@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from "react";
-import select from 'react-select'
 import { Modal, Select, Input, Button } from "antd";
 import { SendOutlined } from "@ant-design/icons";
 import axios from "axios";
