@@ -11,7 +11,6 @@ def step_impl(context):
     sleep(1)
     context.browser.find_element('id', 'create-new-post').click()
     sleep(1)
-    context.browser.refresh()
 
 
 @given('Eu digito "{content}" para descrição')
