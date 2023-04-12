@@ -94,7 +94,7 @@ const AddReviewModal = ({ open, handleOk, handleCancel, getReviews}) => {
     >
       <Input.TextArea
         id="new-post-input"
-        placeholder="Qual sua opninião sobre o professor?"
+        placeholder="Qual sua opinião sobre o professor?"
         value={inputValue}
         onChange={handleInputChange}
         style={{
