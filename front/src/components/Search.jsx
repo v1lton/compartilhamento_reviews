@@ -1,26 +1,14 @@
 import React from "react";
-import { Input } from "antd";
+import SearchBar from "./SearchBar";
 import SearchButton from "./SearchButton";
 
-const { Search } = Input;
-
-const SearchBar = ({ onChange, onClick }) => {
+const Search = ({ onChange, onExecute }) => {
     return (
         <div style={{ display: "flex", alignItems: "center" }}>
-            <Search
-                placeholder="Search..."
-                allowClear
-                onChange={(e) => {
-                    onChange(e.target.value);
-                }}
-                onPressEnter={onClick}
-                onSearch={onClick}
-                style={{ width: "75%" }}
-                id="search-input"
-            />
-            <SearchButton onClick={onClick} />
+            <SearchBar onChange={onChange} onPressEnter={onExecute} />
+            <SearchButton onClick={onExecute} />
         </div>
     );
 };
 
-export default SearchBar;
+export default Search;
