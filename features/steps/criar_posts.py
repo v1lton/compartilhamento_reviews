@@ -45,6 +45,7 @@ def step_impl(context):
 
 @then('Eu devo ver o um review com a descrição "{description}" feito pelo usuario "{user}" sobre o professor "{professor}" e com a categoria "{category}"')
 def step_impl(context, description, user, professor, category):
+    sleep(2)
     posts = context.browser.find_elements('id', 'post-card')
 
     if posts:
