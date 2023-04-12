@@ -25,7 +25,6 @@ const Home = () => {
 
       const result = await axios.get(`http://localhost:3000/reviews_by_category/?category_name=${inputValueSearch}`);
       setReviews(result.data);
-      console.log(result.data)
       setSearchError(`Infelizmente não encontramos nenhum resultado para ${inputValueSearch}`)
     }
     catch (error) {
@@ -43,7 +42,6 @@ const Home = () => {
   const getReviews = async () => {
     const response = await axios.get("http://localhost:3000/reviews");
     setReviews(response.data);
-    console.log(response.data)
   };
 
   const showAddModal = () => {
