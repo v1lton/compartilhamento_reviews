@@ -7,6 +7,7 @@ import AddReviewModal from "../components/AddReviewModal";
 import AddReviewButton from "../components/AddReviewButton";
 import { PlusOutlined } from "@ant-design/icons";
 import Search from "../components/Search";
+import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
   const [searchError, setSearchError] = useState("");
   const [reviews, setReviews] = useState([]);
   const [addVisible, setAddVisible] = useState(false);
+  const navigate = useNavigate();
 
   const executeSearch = async () => {
     try {
@@ -58,7 +60,11 @@ const Home = () => {
 
   return (
     <div className="home-container">
-
+      <Button onClick={() => {
+        navigate('/profile')
+      }}>
+        Seu Perfil
+      </Button>
       <div className="feed">
 
         <main
